@@ -19,7 +19,7 @@ const FooterComponent: React.FC = () => {
           <p
             style={{
               width: '100%',
-              whiteSpace: 'nowrap',
+              // whiteSpace: 'nowrap',
               fontWeight: 'normal',
               color: 'grey',
             }}

@@ -169,7 +169,8 @@ const HeaderComponent: React.FC = () => {
   }, [showModal]);
   useEffect(() => {
     let currentIndex = 0;
-    let interval: NodeJS.Timeout;
+    let interval: ReturnType<typeof setInterval>;
+
     if (!isFocused && !inputValue) {
       const animatePlaceholder = async () => {
         const nextIndex = (currentIndex + 1) % placeholderItems.length;

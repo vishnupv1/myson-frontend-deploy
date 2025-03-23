@@ -106,7 +106,6 @@ const ProductPage: React.FC = () => {
                   {product.specifications.map((item: any, index: any) => (
                     <tr key={index}>
                       <td className="spec-key">{item.word}</td>
-                      <td className="spec-value">{item.word}</td>
                     </tr>
                   ))}
                 </tbody>

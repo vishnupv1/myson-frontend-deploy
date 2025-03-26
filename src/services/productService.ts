@@ -2,7 +2,7 @@
 import axios from "axios";
 
 // Base URL (optional, if you're using a proxy in React or making calls to the same server)
-const API_URL = "http://13.235.236.219:5000/api/products";
+const API_URL = "https://myson.in/api/products";
 
 // Fetch all products
 export const getProducts = async () => {

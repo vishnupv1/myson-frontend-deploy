@@ -1,4 +1,4 @@
-import paths from 'routes/paths';
+// import paths from 'routes/paths';
 
 export interface SubMenuItem {
   name: string;
@@ -45,45 +45,45 @@ const sitemap: MenuItem[] = [
     path: '/admin/brands',
     icon: 'solar:document-text-bold',
   },
-  {
-    id: 'calendar',
-    subheader: 'Calendar',
-    path: '#!',
-    icon: 'mage:calendar-2-fill',
-  },
-  {
-    id: 'messages',
-    subheader: 'Messages',
-    path: '#!',
-    icon: 'mage:dashboard-chart-fill',
-    messages: 49,
-  },
-  {
-    id: 'notification',
-    subheader: 'Notification',
-    path: '#!',
-    icon: 'solar:bell-bold',
-  },
-  {
-    id: 'settings',
-    subheader: 'Settings',
-    path: '#!',
-    icon: 'solar:settings-bold',
-  },
-  {
-    id: 'signin',
-    subheader: 'Sign In',
-    path: paths.signin,
-    icon: 'mage:lock-fill',
-    active: true,
-  },
-  {
-    id: 'signup',
-    subheader: 'Sign Up',
-    path: paths.signup,
-    icon: 'mage:user-plus-fill',
-    active: true,
-  },
+  // {
+  //   id: 'calendar',
+  //   subheader: 'Calendar',
+  //   path: '#!',
+  //   icon: 'mage:calendar-2-fill',
+  // },
+  // {
+  //   id: 'messages',
+  //   subheader: 'Messages',
+  //   path: '#!',
+  //   icon: 'mage:dashboard-chart-fill',
+  //   messages: 49,
+  // },
+  // {
+  //   id: 'notification',
+  //   subheader: 'Notification',
+  //   path: '#!',
+  //   icon: 'solar:bell-bold',
+  // },
+  // {
+  //   id: 'settings',
+  //   subheader: 'Settings',
+  //   path: '#!',
+  //   icon: 'solar:settings-bold',
+  // },
+  // {
+  //   id: 'signin',
+  //   subheader: 'Sign In',
+  //   path: paths.signin,
+  //   icon: 'mage:lock-fill',
+  //   active: true,
+  // },
+  // {
+  //   id: 'signup',
+  //   subheader: 'Sign Up',
+  //   path: paths.signup,
+  //   icon: 'mage:user-plus-fill',
+  //   active: true,
+  // },
 ];
 
 export default sitemap;

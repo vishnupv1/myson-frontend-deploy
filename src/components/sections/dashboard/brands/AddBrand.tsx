@@ -72,7 +72,7 @@ const AddBrand = ({
       .then((result) => {
         console.log(`${isEditMode ? 'Brand updated' : 'Brand added'}:`, result);
         onClose?.();
-        navigate('/brands');
+        navigate('/admin/brands');
         window.location.reload();
         setLoading(false);
       })

@@ -49,7 +49,7 @@ export const deleteProduct = async (id: string) => {
 // Fetch all products
 export const getBrandProducts = async (brand:string) => {
   try {
-    const res = await axios.get(`${API_URL}/brands/products/?brand=${brand}`);
+    const res = await axios.get(`${API_URL}/brands/?brand=${brand}`);
     return res.data;
   } catch (error) {
     console.error("Error fetching products:", error);

@@ -80,13 +80,9 @@ const ProductPage: React.FC = () => {
           </div>
           <div className="product-description">
             <ol>
-              <li>8mm toughened clear glass</li>
-              <li>Electronic digital thermostat for refrigeration counter</li>
-              <li>Rear removable electrocoated aluminium sliding doors</li>
-              <li>6mm shelf glass with ss mirror finish stopper</li>
-              <li>High bright LED lighting: pure white / warm white</li>
-              <li>304 grade steel finish with matte & mirror combination</li>
-              <li>Changeable Corian and engraving work with unique insertion</li>
+              {product.descriptions?.map((item: string, index: number) => (
+                <li key={index}>{item}</li>
+              ))}
             </ol>
           </div>
           <div className="more-details">

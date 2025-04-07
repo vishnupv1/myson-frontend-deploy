@@ -13,7 +13,7 @@ import {
   FormControl,
 } from '@mui/material';
 import IconifyIcon from 'components/base/IconifyIcon';
-import { addProduct, editProduct } from 'services/productService'; // Added editProduct
+import { addProduct, editProduct } from 'services/productService';
 import { useNavigate } from 'react-router-dom';
 import PageLoader from 'components/loader/PageLoader';
 import { getCategory } from 'services/categoryService';
@@ -33,7 +33,7 @@ const AddProduct = ({
     category: '',
     brand: '',
     price: '',
-    description: '',
+    description: [''],
     images: [] as string[],
   });
 
@@ -46,6 +46,7 @@ const AddProduct = ({
   const [categoryData, setCategoryData] = useState<any[]>([]);
   const [brandData, setBrandData] = useState<any[]>([]);
   const hasFetchedData = useRef(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!hasFetchedData.current) {
@@ -58,25 +59,38 @@ const AddProduct = ({
         .catch((error) => console.error('Error fetching brands:', error));
     }
 
-    // Populate form data when editing
     if (isEditMode && product) {
       setFormData({
         name: product.name,
         category: product.category,
         brand: product.brand,
         price: product.price,
-        description: product.description,
+        description: product.description || [''],
         images: product.images || [],
       });
     }
   }, [isEditMode, product]);
 
-  const navigate = useNavigate();
-
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
     setErrors({ ...errors, [name]: false });
+  };
+
+  const handleDescriptionChange = (index: number, value: string) => {
+    const updatedDescriptions = [...formData.description];
+    updatedDescriptions[index] = value;
+    setFormData({ ...formData, description: updatedDescriptions });
+  };
+
+  const addDescriptionField = () => {
+    setFormData({ ...formData, description: [...formData.description, ''] });
+  };
+
+  const removeDescriptionField = (index: number) => {
+    const updatedDescriptions = [...formData.description];
+    updatedDescriptions.splice(index, 1);
+    setFormData({ ...formData, description: updatedDescriptions });
   };
 
   const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -95,9 +109,7 @@ const AddProduct = ({
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = () => {
-        if (reader.result) {
-          resolve(reader.result as string);
-        }
+        if (reader.result) resolve(reader.result as string);
       };
       reader.onerror = (error) => reject(error);
     });
@@ -134,9 +146,9 @@ const AddProduct = ({
 
     setLoading(true);
 
-    const action = isEditMode ? editProduct : addProduct; // Select the action based on mode
+    const action = isEditMode ? editProduct : addProduct;
 
-    action(formData, product?._id) // Pass product ID for update
+    action(formData, product?._id)
       .then((result) => {
         console.log(`${isEditMode ? 'Product updated' : 'Product added'}:`, result);
         onClose?.();
@@ -177,8 +189,8 @@ const AddProduct = ({
               </Box>
             )}
 
-            {/* Product Name Field */}
-            <FormControl fullWidth variant="filled" sx={{ mt: 3, mb: 2 }}>
+            {/* Product Name */}
+            <FormControl fullWidth sx={{ mt: 3, mb: 2 }}>
               <InputLabel htmlFor="name">Product Name</InputLabel>
               <TextField
                 id="name"
@@ -192,8 +204,8 @@ const AddProduct = ({
               />
             </FormControl>
 
-            {/* Category Field */}
-            <FormControl fullWidth variant="filled" sx={{ mt: 3, mb: 2 }}>
+            {/* Category */}
+            <FormControl fullWidth sx={{ mt: 3, mb: 2 }}>
               <InputLabel htmlFor="category">Category</InputLabel>
               <TextField
                 id="category"
@@ -201,7 +213,7 @@ const AddProduct = ({
                 value={formData.category}
                 onChange={handleInputChange}
                 select
-                error={Boolean(errors.category)}
+                error={errors.category}
                 helperText={errors.category ? 'Category is required' : ''}
                 fullWidth
               >
@@ -212,7 +224,9 @@ const AddProduct = ({
                 ))}
               </TextField>
             </FormControl>
-            <FormControl fullWidth variant="filled" sx={{ mt: 3, mb: 2 }}>
+
+            {/* Brand */}
+            <FormControl fullWidth sx={{ mt: 3, mb: 2 }}>
               <InputLabel htmlFor="brand">Brand</InputLabel>
               <TextField
                 id="brand"
@@ -220,8 +234,8 @@ const AddProduct = ({
                 value={formData.brand}
                 onChange={handleInputChange}
                 select
-                error={Boolean(errors.brand)}
-                helperText={errors.brand ? 'brand is required' : ''}
+                error={errors.brand}
+                helperText={errors.brand ? 'Brand is required' : ''}
                 fullWidth
               >
                 {brandData.map((item: any) => (
@@ -232,8 +246,8 @@ const AddProduct = ({
               </TextField>
             </FormControl>
 
-            {/* Price Field */}
-            <FormControl fullWidth variant="filled" sx={{ mt: 3, mb: 2 }}>
+            {/* Price */}
+            <FormControl fullWidth sx={{ mt: 3, mb: 2 }}>
               <InputLabel htmlFor="price">Price</InputLabel>
               <TextField
                 id="price"
@@ -245,18 +259,28 @@ const AddProduct = ({
               />
             </FormControl>
 
-            {/* Description Field */}
-            <FormControl fullWidth variant="filled" sx={{ mt: 3, mb: 2 }}>
-              <InputLabel htmlFor="description">Description</InputLabel>
-              <TextField
-                id="description"
-                name="description"
-                value={formData.description}
-                onChange={handleInputChange}
-                multiline
-                rows={4}
-                fullWidth
-              />
+            {/* Description */}
+            <FormControl fullWidth sx={{ mt: 3, mb: 2 }}>
+              <Typography variant="subtitle1" sx={{ mb: 1 }}>
+                Description
+              </Typography>
+              <Stack spacing={2}>
+                {formData.description.map((desc, index) => (
+                  <Stack direction="row" spacing={1} key={index}>
+                    <TextField
+                      value={desc}
+                      onChange={(e) => handleDescriptionChange(index, e.target.value)}
+                      fullWidth
+                    />
+                    <IconButton color="error" onClick={() => removeDescriptionField(index)}>
+                      <IconifyIcon icon="mingcute:close-line" />
+                    </IconButton>
+                  </Stack>
+                ))}
+                <Button onClick={addDescriptionField} variant="outlined">
+                  Add Description
+                </Button>
+              </Stack>
             </FormControl>
 
             {/* Image Upload Section */}

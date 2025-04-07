@@ -77,26 +77,36 @@ const CategoryComponents: React.FC = () => {
           onClick={() => handleSelectBrand(item.name)}
           style={{ textAlign: 'center', margin: '0 10px', cursor: 'pointer' }}
         >
-          <div
-            className="img-fluid category-image"
-            style={{
-              width: '80px',
-              height: '80px',
-              borderRadius: '50%',
-              backgroundColor: '#f0f0f0',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              fontWeight: '600',
-              color: '#333',
-              fontSize: '14px',
-              boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-              textAlign: 'center',
-              padding: '8px',
-            }}
-          >
-            {item.name}
-          </div>
+          {item.image ? (
+            <img
+              src={item.image}
+              className="img-fluid category-image"
+              alt={`category-${item._id}`}
+              style={{ width: '80px', height: '80px' }}
+            />
+          ) : (
+            <div
+              className="img-fluid category-image"
+              style={{
+                width: '80px',
+                height: '80px',
+                borderRadius: '50%',
+                backgroundColor: '#f0f0f0',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                fontWeight: '600',
+                color: '#333',
+                fontSize: '14px',
+                boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+                textAlign: 'center',
+                padding: '8px',
+              }}
+            >
+              {item.name}
+            </div>
+          )}
+
           {/* <div
             className="black-text category-text"
             style={{ marginTop: '5px', color: 'var(--black-12)' }}

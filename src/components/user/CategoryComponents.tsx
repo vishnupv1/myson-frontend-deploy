@@ -97,12 +97,12 @@ const CategoryComponents: React.FC = () => {
           >
             {item.name}
           </div>
-          <div
+          {/* <div
             className="black-text category-text"
             style={{ marginTop: '5px', color: 'var(--black-12)' }}
           >
             {item.name}
-          </div>
+          </div> */}
         </div>
       ))}
     </div>

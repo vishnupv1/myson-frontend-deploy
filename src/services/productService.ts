@@ -3,6 +3,7 @@ import axios from "axios";
 
 // Base URL (optional, if you're using a proxy in React or making calls to the same server)
 const API_URL = "https://myson.in/api/products";
+const BRAND_URL = "https://myson.in/api/brands";
 
 // Fetch all products
 export const getProducts = async () => {
@@ -49,7 +50,7 @@ export const deleteProduct = async (id: string) => {
 // Fetch all products
 export const getBrandProducts = async (brand:string) => {
   try {
-    const res = await axios.get(`${API_URL}/brands/?brand=${brand}`);
+    const res = await axios.get(`${BRAND_URL}/products/?brand=${brand}`);
     return res.data;
   } catch (error) {
     console.error("Error fetching products:", error);

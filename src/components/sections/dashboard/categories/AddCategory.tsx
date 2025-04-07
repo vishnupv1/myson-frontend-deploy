@@ -39,7 +39,7 @@ const AddCategory = () => {
     addCategory(formData)
       .then((newCategory) => {
         console.log('Category added:', newCategory);
-        navigate('/categories');
+        navigate('/admin/categories');
         setLoading(false);
       })
       .catch((error) => {

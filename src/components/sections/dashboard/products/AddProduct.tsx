@@ -17,6 +17,7 @@ import { addProduct, editProduct } from 'services/productService'; // Added edit
 import { useNavigate } from 'react-router-dom';
 import PageLoader from 'components/loader/PageLoader';
 import { getCategory } from 'services/categoryService';
+import { getBrands } from 'services/brandService';
 
 const AddProduct = ({
   product,
@@ -30,6 +31,7 @@ const AddProduct = ({
   const [formData, setFormData] = useState({
     name: '',
     category: '',
+    brand: '',
     price: '',
     description: '',
     images: [] as string[],
@@ -38,9 +40,11 @@ const AddProduct = ({
   const [errors, setErrors] = useState({
     name: false,
     category: false,
+    brand: false,
   });
   const [loading, setLoading] = useState<boolean>(false);
   const [categoryData, setCategoryData] = useState<any[]>([]);
+  const [brandData, setBrandData] = useState<any[]>([]);
   const hasFetchedData = useRef(false);
 
   useEffect(() => {
@@ -49,6 +53,9 @@ const AddProduct = ({
       getCategory()
         .then((data) => setCategoryData(data))
         .catch((error) => console.error('Error fetching categories:', error));
+      getBrands()
+        .then((data) => setBrandData(data))
+        .catch((error) => console.error('Error fetching brands:', error));
     }
 
     // Populate form data when editing
@@ -56,6 +63,7 @@ const AddProduct = ({
       setFormData({
         name: product.name,
         category: product.category,
+        brand: product.brand,
         price: product.price,
         description: product.description,
         images: product.images || [],
@@ -119,6 +127,7 @@ const AddProduct = ({
       setErrors({
         name: !formData.name,
         category: !formData.category,
+        brand: !formData.brand,
       });
       return;
     }
@@ -197,6 +206,25 @@ const AddProduct = ({
                 fullWidth
               >
                 {categoryData.map((item: any) => (
+                  <MenuItem key={item.name} value={item.name}>
+                    {item.name}
+                  </MenuItem>
+                ))}
+              </TextField>
+            </FormControl>
+            <FormControl fullWidth variant="filled" sx={{ mt: 3, mb: 2 }}>
+              <InputLabel htmlFor="brand">Brand</InputLabel>
+              <TextField
+                id="brand"
+                name="brand"
+                value={formData.brand}
+                onChange={handleInputChange}
+                select
+                error={Boolean(errors.brand)}
+                helperText={errors.brand ? 'brand is required' : ''}
+                fullWidth
+              >
+                {brandData.map((item: any) => (
                   <MenuItem key={item.name} value={item.name}>
                     {item.name}
                   </MenuItem>

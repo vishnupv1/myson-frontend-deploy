@@ -44,22 +44,22 @@ const CategoryComponents: React.FC = () => {
     {
       image: 'https://www.classeq.co.uk/uploads/products/classeq-g400/G400-basket-on-door.png',
       _id: 2,
-      name: 'Blue star',
+      name: 'Western',
     },
     {
       image: 'https://www.dihr.com/sync/img/HT 11 ECO.jpg',
       _id: 3,
-      name: 'Winter halter',
+      name: 'Hoshizaki',
     },
     {
       image: 'https://www.scotsice.com.au/_images/_dihr/RX101E.jpg',
       _id: 4,
-      name: 'Bosch',
+      name: 'Dhir',
     },
     {
       image: 'https://www.classeq.co.uk/uploads/products/classeq-g500/G500_Rack_On_Door.png',
       _id: 5,
-      name: 'Convotherm',
+      name: 'Merrychef',
     },
     {
       image:

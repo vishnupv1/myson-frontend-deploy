@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { getBrands } from '../../services/brandService';
+import React, { useEffect, useState } from 'react';
+// import { useRef } from 'react';
+// import { getBrands } from '../../services/brandService';
 import { useNavigate } from 'react-router-dom';
 
 interface Brand {
@@ -10,25 +11,25 @@ interface Brand {
 
 const CategoryComponents: React.FC = () => {
   const [adminBrands, setAdminBrands] = useState<Brand[]>([]);
-  const hasFetchedData = useRef(false);
+  // const hasFetchedData = useRef(false);
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (!hasFetchedData.current) {
-      hasFetchedData.current = true;
-      getBrands()
-        .then((data: Brand[]) => {
-          if (data.length) {
-            setAdminBrands(data);
-          } else {
-            setAdminBrands(images);
-          }
-        })
-        .catch((error) => {
-          console.error('Error fetching brands:', error);
-          setAdminBrands(images);
-        });
-    }
+    // if (!hasFetchedData.current) {
+    //   hasFetchedData.current = true;
+    //   getBrands()
+    //     .then((data: Brand[]) => {
+    //       if (data.length) {
+    // setAdminBrands(data);
+    // } else {
+    setAdminBrands(images);
+    // }
+    // })
+    // .catch((error) => {
+    // console.error('Error fetching brands:', error);
+    // setAdminBrands(images);
+    // });
+    // }
   }, []);
 
   const handleSelectBrand = (name: string) => {

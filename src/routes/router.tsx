@@ -12,6 +12,7 @@ import AddBrand from 'components/sections/dashboard/brands/AddBrand';
 import UserApp from 'components/user/AppUser';
 import ProductPage from 'components/user/ProductPage';
 import BrandProducts from 'components/user/BrandProducts';
+import TrendingProductPage from 'components/user/trendingProductPage';
 
 const App = lazy(() => import('App'));
 const MainLayout = lazy(() => import('layouts/main-layout'));
@@ -27,6 +28,7 @@ const userRoutes = [
     children: [
       { path: '/', element: <UserApp /> },
       { path: '/product/:id', element: <ProductPage /> },
+      { path: '/product-trending/:id', element: <TrendingProductPage /> },
       { path: '/products/:name', element: <BrandProducts /> },
     ],
   },

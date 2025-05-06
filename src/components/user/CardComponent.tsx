@@ -6,6 +6,8 @@ import './CardComponent.css';
 import { useMediaQuery } from 'react-responsive';
 import { useNavigate } from 'react-router-dom';
 import { getProducts } from '../../services/productService';
+import trendingProducts from 'Constants/trendingProducts';
+// import trendingProducts from 'Constants/trendingProducts';
 
 interface Product {
   _id: string;
@@ -30,7 +32,11 @@ const CardComponent: React.FC<CardComponentProps> = ({ title }) => {
   const hasFetchedData = useRef(false);
 
   useEffect(() => {
-    if (!hasFetchedData.current) {
+    if (title.toLowerCase() === 'trending products') {
+      setAdminProducts(trendingProducts);
+    }
+
+    if (!hasFetchedData.current && title.toLowerCase() !== 'trending products') {
       hasFetchedData.current = true;
       getProducts()
         .then((data: Product[]) => {
@@ -50,7 +56,11 @@ const CardComponent: React.FC<CardComponentProps> = ({ title }) => {
   }, []);
 
   const handleSelectProduct = (id: string) => {
-    navigate(`/product/${id}`);
+    if (title.toLowerCase() !== 'trending products') {
+      navigate(`/product/${id}`);
+    } else {
+      navigate(`/product-trending/${id}`);
+    }
   };
 
   return (

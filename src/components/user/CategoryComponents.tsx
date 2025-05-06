@@ -43,28 +43,28 @@ const CategoryComponents: React.FC = () => {
       name: 'Offer Zone',
     },
     {
-      image: 'https://www.classeq.co.uk/uploads/products/classeq-g400/G400-basket-on-door.png',
+      image: 'https://lighthousefnb.com/wp-content/uploads/2024/08/WBM-1080-T.png',
       _id: 2,
       name: 'Western',
     },
     {
-      image: 'https://www.dihr.com/sync/img/HT 11 ECO.jpg',
+      image: 'https://www.hoshizaki-sea.com/wp-content/uploads/2024/11/4.-HW-320B-1.png',
       _id: 3,
       name: 'Hoshizaki',
     },
     {
       image: 'https://www.scotsice.com.au/_images/_dihr/RX101E.jpg',
       _id: 4,
-      name: 'Dhir',
+      name: 'Dihr',
     },
     {
-      image: 'https://www.classeq.co.uk/uploads/products/classeq-g500/G500_Rack_On_Door.png',
+      image: 'https://www.pi-india.com/uploaded_files/ca424938a90417.png',
       _id: 5,
       name: 'Merrychef',
     },
     {
       image:
-        'https://www.angliacateringequipment.com/wp-content/uploads/2022/09/Convotherm-Maxx-10.10-Electric-Combi-Oven-101-Shelves-GN-11-400x400.webp',
+        'https://5.imimg.com/data5/IJ/IH/WD/SELLER-3836337/classeq-undercounter-dishwasher-for-pubs-1000x1000.jpg',
       _id: 6,
       name: 'Classeq',
     },

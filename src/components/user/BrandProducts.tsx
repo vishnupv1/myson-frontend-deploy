@@ -37,7 +37,7 @@ const BrandProducts: React.FC = () => {
         setFilteredProducts(selectedProducts);
       } catch (error) {
         console.error('Error fetching product, falling back to local data:', error);
-        const fallbackProducts = products.filter((item) => item.brand === 'Blue Star');
+        const fallbackProducts = products.filter((item) => item.brand === name);
         setMainProducts(fallbackProducts);
         setFilteredProducts(fallbackProducts);
       }

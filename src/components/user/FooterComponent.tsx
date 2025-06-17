@@ -46,7 +46,7 @@ const FooterComponent: React.FC = () => {
         <section id="contact-us">
           <h5 className="footer-contact">Contact Us</h5>
           <ul>
-            <li style={{ marginBottom: '8px' }}>Call Us at 8606387883</li>
+            <li style={{ marginBottom: '8px' }}>Call Us at +91 9447458735</li>
             <li style={{ marginBottom: '8px' }}>www.myson.in</li>
             <li style={{ marginBottom: '8px' }}>
               <div

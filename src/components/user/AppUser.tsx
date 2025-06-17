@@ -11,6 +11,7 @@ import OfferComponent from './OfferComponent';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './AppUser.css';
+import YouTubeShort from './YoutubeShort';
 
 const UserApp: React.FC = () => {
   return (
@@ -26,6 +27,7 @@ const UserApp: React.FC = () => {
       <CardComponent title="New Arrival" />
       <CardComponent title="Recently Visited" />
       <Testimonial />
+      <YouTubeShort />
       <Footer />
     </div>
   );

@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import { useRef } from 'react';
-// import { getBrands } from '../../services/brandService';
-import { useNavigate } from 'react-router-dom';
 
 interface Brand {
   _id: number;
@@ -11,30 +8,10 @@ interface Brand {
 
 const CategoryComponents: React.FC = () => {
   const [adminBrands, setAdminBrands] = useState<Brand[]>([]);
-  // const hasFetchedData = useRef(false);
-  const navigate = useNavigate();
 
   useEffect(() => {
-    // if (!hasFetchedData.current) {
-    //   hasFetchedData.current = true;
-    //   getBrands()
-    //     .then((data: Brand[]) => {
-    //       if (data.length) {
-    // setAdminBrands(data);
-    // } else {
     setAdminBrands(images);
-    // }
-    // })
-    // .catch((error) => {
-    // console.error('Error fetching brands:', error);
-    // setAdminBrands(images);
-    // });
-    // }
   }, []);
-
-  const handleSelectBrand = (name: string) => {
-    navigate(`/products/${name}`);
-  };
 
   const images: Brand[] = [
     {
@@ -75,7 +52,6 @@ const CategoryComponents: React.FC = () => {
       {adminBrands.map((item) => (
         <div
           key={item._id}
-          onClick={() => handleSelectBrand(item.name)}
           style={{ textAlign: 'center', margin: '0 10px', cursor: 'pointer' }}
         >
           {item.image ? (

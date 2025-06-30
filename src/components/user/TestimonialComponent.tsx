@@ -27,18 +27,18 @@ const Testimonial: React.FC = () => {
       <h4 style={{ fontWeight: 'bold', textAlign: 'center' }} className="title">
         Our Customers Love Us!
       </h4>
-      <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
+      <ul className="testimonial-list">
         {testimonials.map((testimonial, index) => (
-          <div className="testimonial-container" key={index}>
-            <div className="testimonial-card">
+          <li className="testimonial-list-item" key={index}>
+            <div className="testimonial-card"> {/* Keep card styling for each item */}
               <div className="testimonial-content">
                 <p className="testimonial-text">"{testimonial.text}"</p>
                 <p className="testimonial-author">- {testimonial.author}</p>
               </div>
             </div>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };

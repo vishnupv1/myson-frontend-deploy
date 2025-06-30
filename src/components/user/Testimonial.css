@@ -1,13 +1,24 @@
 .testimonial {
-    padding: 80px;
+    padding: 20px 0; /* Adjusted padding for when it's part of a flex layout */
   }
+
+.testimonial-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin: 0;
+}
+
+.testimonial-list-item {
+  margin-bottom: 15px; /* Space between list items (cards) */
+}
+
+.testimonial-list-item:last-child {
+  margin-bottom: 0;
+}
   
-  .testimonial-container {
-    flex: 1;
-    /* Allow the container to take up available space */
-    margin: 10px;
-    /* Adjusted for better spacing */
-  }
+  /* .testimonial-container is no longer used directly for flex layout of multiple cards. 
+     The .testimonial-list-item now serves as the container for each card.
+     Flex properties from .testimonial-container are removed. */
   
   .testimonial-card {
     background-color: white;
@@ -15,9 +26,12 @@
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    /* Ensure card takes full width of the list item if needed, or respects padding */
+    width: 100%; 
+    box-sizing: border-box;
   }
   
-  .testimonial-image h3 {
+  .testimonial-image h3 { /* This class seems unused in the current HTML structure of TestimonialComponent */
     margin-bottom: 15px;
     font-size: 1.5em;
     color: #333;
@@ -32,47 +46,49 @@
   .testimonial-text {
     font-size: 1em;
     color: #555;
+    text-align: justify; /* Align text for better readability in a list */
   }
   
   .testimonial-author {
     /* margin-top: 2px; */
     font-weight: bold;
     color: #333;
+    margin-top: 10px; /* Add some space above the author */
   }
   
   .testimonial-content p {
     padding: 0px 10px 0px 10px !important;
   }
   
-  h3 {
+  /* h3 styling here might be too general if TestimonialComponent doesn't use h3 for its title */
+  /* The title in TestimonialComponent is an h4. */
+
+  .testimonial .title { /* Targeting the h4 title specifically */
     text-align: center;
     margin-bottom: 20px;
-    font-size: large !important;
-    font: bolder !important;
+    font-size: 1.5em; /* Example size, adjust as needed */
+    font-weight: bold;
   }
   
-  /* Media Queries */
+  /* Media Queries for .testimonial-card or .testimonial-list-item if needed for responsive text, etc. */
+  /* The old media queries for .testimonial-container (flex layout) are no longer needed here as items always stack. */
+  
   @media (max-width: 768px) {
-    .testimonial-container {
-      flex: 1 1 100%;
-      /* Stack the testimonial cards on top of each other */
-      margin-bottom: 20px;
-      padding-right: 0px;
-    }
+    /* .testimonial-card might need adjustments if stacking within testimonial-video-section's column flow */
+    /* For example, if it was previously getting special borders only on mobile when stacked: */
+    /* .testimonial-card {
+      padding-right: 0px; 
+      border-top: solid 3px whitesmoke; 
+    } */
   
-    .testimonial-card {
-      padding-right: 0px;
-      border-top: solid 3px whitesmoke;
-    }
-  
-    .title {
-      font-weight: 400;
+    .testimonial .title { /* Adjust title size for mobile if needed */
+      font-weight: normal; /* Was 400 in old query */
+      font-size: 1.3em;
     }
   }
   
-  @media (min-width: 769px) {
+  /* @media (min-width: 769px) {
     .testimonial-container {
-      flex: 1 1 30%;
-      /* Show 3 cards side by side on larger screens */
-    }
-  }
+      flex: 1 1 30%; /* No longer applicable */
+    /* }
+  } */

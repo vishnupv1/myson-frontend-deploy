@@ -23,7 +23,7 @@ const BannerVideo: React.FC = () => {
 
   return (
     <div className="banner-container">
-      <video ref={videoRef} width="100%" height={500} autoPlay loop muted>
+      <video ref={videoRef} width="100%" autoPlay loop muted>
         <source src={video} type="video/mp4" />
         Your browser does not support the video tag.
       </video>

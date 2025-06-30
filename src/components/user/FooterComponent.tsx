@@ -11,7 +11,7 @@ import companyLogo from '../../assets/images/CompanyLogo.png';
 
 const FooterComponent: React.FC = () => {
   return (
-    <footer style={{ padding: '0px 0px' }}>
+    <footer style={{ padding: '0px 0px', backgroundColor: '#333', color: '#fff' }}>
       <div id="last">
         {/* Logo and description on the left */}
         <section id="footer-logo">
@@ -21,7 +21,7 @@ const FooterComponent: React.FC = () => {
               width: '100%',
               // whiteSpace: 'nowrap',
               fontWeight: 'normal',
-              color: 'grey',
+              color: 'lightgray',
             }}
           >
             Since our establishment in 2018, MYSON has swiftly risen as India's leading hub for pet
@@ -34,20 +34,20 @@ const FooterComponent: React.FC = () => {
 
         {/* Links */}
         <section id="links">
-          <h5 className="footer-links">Links</h5>
+          <h5 className="footer-links" style={{ color: '#fff' }}>Links</h5>
           <ul>
-            <li>Kitchen</li>
-            <li>Furniture</li>
-            <li>Shops</li>
+            <li style={{ color: '#fff' }}>Kitchen</li>
+            <li style={{ color: '#fff' }}>Furniture</li>
+            <li style={{ color: '#fff' }}>Shops</li>
           </ul>
         </section>
 
         {/* Contact Us */}
         <section id="contact-us">
-          <h5 className="footer-contact">Contact Us</h5>
+          <h5 className="footer-contact" style={{ color: '#fff' }}>Contact Us</h5>
           <ul>
-            <li style={{ marginBottom: '8px' }}>Call Us at +91 9447458735</li>
-            <li style={{ marginBottom: '8px' }}>www.myson.in</li>
+            <li style={{ marginBottom: '8px', color: '#fff' }}>Call Us at +91 9447458735</li>
+            <li style={{ marginBottom: '8px', color: '#fff' }}>www.myson.in</li>
             <li style={{ marginBottom: '8px' }}>
               <div
                 style={{
@@ -58,17 +58,17 @@ const FooterComponent: React.FC = () => {
                   justifyContent: 'center',
                 }}
               >
-                <FontAwesomeIcon icon={faFacebook} style={{ color: 'black' }} />
-                <FontAwesomeIcon icon={faTwitter} style={{ color: 'black' }} />
-                <FontAwesomeIcon icon={faYoutube} style={{ color: 'black' }} />
-                <FontAwesomeIcon icon={faLinkedin} style={{ color: 'black' }} />
-                <FontAwesomeIcon icon={faInstagram} style={{ color: 'black' }} />
+                <FontAwesomeIcon icon={faFacebook} style={{ color: 'white' }} />
+                <FontAwesomeIcon icon={faTwitter} style={{ color: 'white' }} />
+                <FontAwesomeIcon icon={faYoutube} style={{ color: 'white' }} />
+                <FontAwesomeIcon icon={faLinkedin} style={{ color: 'white' }} />
+                <FontAwesomeIcon icon={faInstagram} style={{ color: 'white' }} />
               </div>
             </li>
           </ul>
         </section>
       </div>
-      <h6>© 2024 MYSON Private Limited</h6>
+      <h6 style={{ color: 'lightgray' }}>© 2024 MYSON Private Limited</h6>
     </footer>
   );
 };

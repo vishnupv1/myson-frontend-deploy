@@ -672,3 +672,102 @@ td:first-child {
     /* .banner-container video {
     height: 187px; /* Set a specific height for mobile, adjust as needed */
 }
+
+
+/* Video Row Styles (now for single local video) */
+.video-row-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Center the single video container */
+  align-items: flex-start; 
+  padding: 20px 5%; 
+  margin: 30px 0; 
+}
+
+/* Styling for the direct child (banner-container for local video) */
+.video-row-container > div {
+  flex: 0 0 70%; /* Video takes 70% of the container width */
+  max-width: 70%; /* Ensure it doesn't exceed 70% */
+  box-sizing: border-box;
+}
+
+/* Specific overrides for .banner-container when inside .video-row-container */
+.video-row-container .banner-container {
+  width: 100%; /* Take full width of its flex item parent */
+  height: auto !important; /* Override previous height: 40% !important */
+  padding: 0; /* Reset padding if any was inherited */
+  margin: 0; /* Reset margin */
+}
+
+.video-row-container .banner-container video {
+  width: 100%;
+  height: auto !important; /* Ensure aspect ratio is maintained */
+  max-height: none; /* Remove any max-height if previously set, let it be natural */
+  object-fit: cover; /* In case container aspect ratio is forced by other means */
+}
+
+/* The YouTubeShort component's outer div will be one of the .video-row-container > div children */
+/* Its existing inline styles for aspect ratio should work fine within the new width */
+
+/* Responsive styles for the video row */
+@media (max-width: 768px) {
+  .video-row-container {
+    flex-direction: column; /* Stack videos vertically */
+    align-items: center; /* Center them in the column */
+    padding: 20px 5%; /* Adjust padding for mobile if needed */
+  }
+
+  .video-row-container > div {
+    flex-basis: auto; /* Reset flex-basis */
+    width: 90%; /* Video takes more width when stacked */
+    max-width: 500px; /* But not more than 500px to avoid being too wide on mobile */
+    /* margin-bottom removed as there's only one item */
+  }
+}
+
+/* New Testimonial + Video Section Styles */
+.testimonial-video-section {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start; /* Or 'stretch' if we want to force equal height, but video aspect ratio needs care */
+  gap: 20px;
+  padding: 20px 5%; /* Match padding of other sections */
+}
+
+/* Child: Testimonial Component Wrapper (assuming Testimonial component is wrapped in a div or is a block) */
+/* We need to know the actual class/element of Testimonial component's root for specific targeting */
+/* For now, assume Testimonial component itself or its direct wrapper is the flex child */
+.testimonial-video-section > :first-child { /* Targeting the Testimonial component */
+  flex: 2; /* Testimonials take more space */
+    max-width: 70%; /* Cap the max width to ensure it doesn't get too wide */
+  min-width: 0; /* Allow shrinking */
+}
+
+/* Child: YouTubeShort Component Wrapper */
+.testimonial-video-section > :last-child { /* Targeting the YouTubeShort component's wrapper div */
+  flex:auto; /* YouTube Short takes less space, making it narrower and thus shorter */
+  max-width: 30%; /* Cap the max width to ensure it doesn't get too wide - Reduced from 35% */
+  min-width: 0; /* Allow shrinking */
+}
+
+/* Responsive styles for Testimonial + Video Section */
+@media (max-width: 768px) {
+  .testimonial-video-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .testimonial-video-section > :first-child,
+  .testimonial-video-section > :last-child {
+    width: 90%; /* Both take more width when stacked */
+    max-width: 500px; /* Max width for mobile */
+    margin-bottom: 20px;
+    flex: none; /* Reset flex property */
+    max-width: 100%; /* override previous max-width */
+  }
+
+  .testimonial-video-section > :last-child {
+    margin-bottom: 0;
+  }
+}

@@ -1,27 +1,47 @@
 /* CardComponent.css */
+.main-container h4 {
+    font-weight: 700; /* Make it bolder */
+    font-size: 1.8rem; /* Increase font size */
+    text-align: center; /* Center the heading */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Modern font family */
+    margin-bottom: 30px; /* Add more space below the heading */
+    color: #333; /* Darker color for better contrast */
+    letter-spacing: 0.05em; /* Slightly increased letter spacing */
+    text-transform: uppercase; /* Uppercase for a modern look */
+}
+
 .main-container {
     border-top: 3px solid whitesmoke;
     margin-top: 5px;
-    padding: 20px 20px;
+    padding: 20px 0; /* Removed horizontal padding */
 }
 
 .title {
-    text-align: left;
+    text-align: center; /* Center the product title */
+    margin-bottom: 10px; /* Add some space below the title */
 }
 
 .card-body {
+    /* Remove flex properties to allow elements to stack */
+    display: block; /* Change to block to stack elements */
+    text-align: center; /* Center content horizontally */
+}
+
+.card-body-content {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    /* Ensure proper wrapping on smaller screens */
+    flex-direction: column;
+    justify-content: space-between; /* Pushes content to top and button to bottom */
+    min-height: 120px; /* Adjust this value as needed to accommodate product names and provide fixed spacing */
+    padding: 15px;
+    text-align: center; /* Center content horizontally */
 }
 
 .card-title {
     flex: 1;
     font-size: medium !important;
     font-weight: 500 !important;
-    text-align: left;
+    text-align: center; /* Center the product title */
+    margin-bottom: 10px; /* Add some space below the title */
     white-space: normal !important;
     overflow: hidden !important;
     text-overflow: ellipsis !important;
@@ -41,10 +61,12 @@
 
 .card-container {
     display: flex;
-    overflow-x: auto;
+    flex-wrap: wrap;
+    overflow-x: hidden;
     gap: 25px;
     padding-bottom: 10px;
     padding-top: 20px;
+    justify-content: space-around; /* Distribute items evenly with space around them */
 }
 
 .brand-card-container {
@@ -89,25 +111,46 @@
 
 
 .card-text {
-    text-align: left;
+    text-align: center; /* Center the product title */
+    margin-bottom: 10px; /* Add some space below the title */
     color: black;
     font-weight: bolder;
 }
 
 .card-button {
-    width: 100% !important;
-    color: white !important;
-    background-color: rgb(255, 0, 0) !important;
-    border-radius: 0 0 15px 15px !important;
-    /* background-color: your-color !important; */
-    border: none !important;
-    height: 45px !important;
-    font-weight: bold !important;
-    /* font-family: sans-serif !important; */
-    padding: 5px !important;
-    flex-shrink: 0;
-    /* Prevent button from shrinking */
+    display: block; /* Ensure button takes full width to allow margin auto for centering */
+    margin: 10px auto 0 auto; /* Center the button and add top margin */
+    background-color: #5B93FF; /* Changed to blue[500] from theme */
+    color: white;
+    border: none;
+    border-radius: 8px; /* Slightly more rounded corners */
+    padding: 12px 28px; /* Comfortable padding */
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease; /* Smooth transitions for hover effects */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
 
+.card-button:hover {
+    background-color: #385C8E; /* Darker shade for hover, blue[800] */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+    transform: translateY(-2px); /* Slight lift effect */
+}
+
+.card-button:active {
+    background-color: #385C8E; /* Darker shade for active, blue[800] */
+    transform: translateY(0); /* Reset lift effect */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Smaller shadow on click */
+}
+
+@media (max-width: 768px) {
+    .card-button {
+        /* ... existing code ... */
+        padding: 10px 20px; /* Adjust padding for smaller screens */
+        font-size: 0.9rem;
+        /* ... existing code ... */
+    }
 }
 
 .top-brand-image {
@@ -117,8 +160,13 @@
 
 /* Remove padding and margin on mobile devices */
 @media (max-width: 768px) {
+    .main-container h4 {
+        font-size: 1.4rem; /* Adjust font size for mobile */
+        margin-bottom: 20px; /* Adjust margin for mobile */
+    }
+
     .main-container {
-        padding: 10px;
+        padding: 10px 0; /* Removed horizontal padding for mobile */
         margin: 0;
     }
 
@@ -133,10 +181,12 @@
 
     .card-container {
         display: flex;
-        overflow-x: auto;
+        flex-wrap: wrap;
+        overflow-x: hidden;
         gap: 10px;
         padding-bottom: 10px;
         padding-top: 20px;
+        justify-content: space-around; /* Distribute items evenly with space around them for mobile */
     }
 
     .brand-card-container {
@@ -164,7 +214,8 @@
     }
 
     .card-title {
-        text-align: left;
+        text-align: center; /* Center the product title */
+    margin-bottom: 10px; /* Add some space below the title */
         font-weight: 500 !important;
         white-space: normal !important;
         overflow: hidden !important;
@@ -221,6 +272,1237 @@
         overflow-y: none;
     }
 
-
-
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 4px 16px rgba(238,9,121,0.15);
+  transition: background 0.3s, transform 0.2s;
+}
+.modern-cart-btn:hover, .modern-cart-btn:focus {
+  background: linear-gradient(90deg, #ee0979 0%, #ff6a00 100%);
+  color: #fff;
+  transform: translateY(-2px) scale(1.04);
+}
+.modern-cart-btn {
+  background: linear-gradient(90deg, #ff6a00 0%, #ee0979 100%);
+}
 }

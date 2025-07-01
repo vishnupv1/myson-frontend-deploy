@@ -8,12 +8,14 @@ type ProductImageZoomProps = {
 
 const ProductImageZoom: React.FC<ProductImageZoomProps> = ({ imageSrc }) => {
   return (
-    <div className="product-image-zoom">
-      <Zoom>
+    <div className="image-zoom-container">
+      <Zoom
+        // Removed overlayBgColorEnd and overlayBgColorStart as they are causing a TypeScript error
+      >
         <img
           src={imageSrc}
-          alt="Product"
-          // style={{ width: '100%', height: '500px', objectFit: 'cover', border:'solid 1px whitesmoke' }}
+          alt={imageSrc}
+          className="preview-image"
         />
       </Zoom>
     </div>

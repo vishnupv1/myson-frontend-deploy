@@ -2,9 +2,7 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faFacebook,
-  faTwitter,
   faYoutube,
-  faLinkedin,
   faInstagram,
 } from '@fortawesome/free-brands-svg-icons';
 import companyLogo from '../../assets/images/CompanyLogo.png';
@@ -58,11 +56,15 @@ const FooterComponent: React.FC = () => {
                   justifyContent: 'center',
                 }}
               >
-                <FontAwesomeIcon icon={faFacebook} style={{ color: 'white' }} />
-                <FontAwesomeIcon icon={faTwitter} style={{ color: 'white' }} />
-                <FontAwesomeIcon icon={faYoutube} style={{ color: 'white' }} />
-                <FontAwesomeIcon icon={faLinkedin} style={{ color: 'white' }} />
-                <FontAwesomeIcon icon={faInstagram} style={{ color: 'white' }} />
+                <a href="https://www.facebook.com/share/1AZUciqVzA/" target="_blank" rel="noopener noreferrer">
+                  <FontAwesomeIcon icon={faFacebook} style={{ color: 'white' }} />
+                </a>
+                <a href="https://youtube.com/@myson-planet?si=nABCxjp6FmJyIi5u" target="_blank" rel="noopener noreferrer">
+                  <FontAwesomeIcon icon={faYoutube} style={{ color: 'white' }} />
+                </a>
+                <a href="https://www.instagram.com/mysonfoodcaredisplaysolutions/" target="_blank" rel="noopener noreferrer">
+                  <FontAwesomeIcon icon={faInstagram} style={{ color: 'white' }} />
+                </a>
               </div>
             </li>
           </ul>

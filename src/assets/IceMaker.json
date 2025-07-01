@@ -1,0 +1,384 @@
+[
+  {
+    "id": 1,
+    "name": "Western Ice Maker",
+    "model": "WOI-45",
+    "ice_shape_mm": "Cube (22 x 22 x 22)",
+    "cap_per_day_kg": "36.5 (21^oC Ambient & 15^oC Inlet Water Temp.)",
+    "storage_capacity_kg": "15 Kg",
+    "dimensions_mm": "500 (W) x 596 (D) x 897 (H)",
+    "power_supply": "230V/50Hz",
+    "weight_kg": 45,
+    "image": "woi_45.png",
+    "description": "Compact cube ice maker designed for cafés, bars, and small restaurants. Produces high-quality cube ice."
+  },
+  {
+    "id": 2,
+    "name": "Western Ice Maker",
+    "model": "WOI-80",
+    "ice_shape_mm": "Cube (22 x 22 x 22)",
+    "cap_per_day_kg": "67.1 (21^oC Ambient & 15^oC Inlet Water Temp.)",
+    "storage_capacity_kg": "32 Kg",
+    "dimensions_mm": "660 (W) x 708 (D) x 1084 (H) (With 90mm leg)",
+    "power_supply": "230V/50Hz",
+    "weight_kg": 63,
+    "image": "woi_80.png",
+    "description": "Compact cube ice maker designed for cafés, bars, and small restaurants. Produces high-quality cube ice."
+  },
+  {
+    "id": 3,
+    "name": "Western Ice Maker",
+    "model": "WOI-125",
+    "ice_shape_mm": "Cube (22 x 22 x 22)",
+    "cap_per_day_kg": "98.5 (21^oC Ambient & 15^oC Inlet Water Temp.)",
+    "storage_capacity_kg": "43.6 Kg",
+    "dimensions_mm": "600 (W) x 708 (D) x 1232 (H) (With 90mm leg)",
+    "power_supply": "230V/50Hz",
+    "weight_kg": 66,
+    "image": "woi_125.png",
+    "description": "Produces soft, flake ice perfect for seafood and medical use. High output for industrial needs."
+  },
+{
+    "id": 4,
+    "name": "Vaccine Freezer",
+    "model": "VFW140H-HC",
+    "capacity_liters": {
+      "effective": 142,
+      "vaccine": 68,
+      "max_water_pack_freezing": 16.2
+    },
+    "dimensions_mm": "710(W) x 720(D) x 955(H)",
+    "current_amp": 0.90,
+    "power_supply": "Single phase, 220-240V AC, 50Hz",
+    "refrigerant": "R-290 Eco-friendly",
+    "temperature_controller": "Electronic Controller",
+    "operating_condition": "+5°C to +43°C",
+    "safe_temperature_range": "-15°C to -25°C",
+    "min_hold_over_time": "3 hrs 33 mins",
+    "energy_consumption_kwh_per_day": 1.94,
+    "no_of_baskets": 4,
+    "insulation": "Cyclopentane",
+    "image": "vaccine_freezer.png"
+  },
+  {
+    "id": 5,
+    "name": "Ice Lined Refrigerator",
+    "model": "I425H120",
+    "capacity_liters": {
+      "effective": 253,
+      "vaccine": 192
+    },
+    "dimensions_mm": "1320(W) x 805(D) x 970(H)",
+    "current_amp": 1.10,
+    "power_supply": "Single phase, 220-240V AC, 50Hz",
+    "refrigerant": "R-290 Eco-friendly",
+    "temperature_controller": "Electronic controller",
+    "operating_condition": "+10°C to +43°C",
+    "safe_temperature_range": "+2°C to +8°C",
+    "min_hold_over_time": "42 hrs 30 mins",
+    "energy_consumption_kwh_per_day": 1.50,
+    "image": "ice_lined_ref.png"
+  },
+  {
+    "id": 6,
+    "name": "Pharmaceutical Refrigerator",
+    "model": "PR-600",
+    "gross_volume_liters": 507,
+    "dimensions_mm": "660(W) x 830(D) x 1817(H)",
+    "current_amp": 1.0,
+    "power_supply": "Single phase, 230V AC, 50Hz",
+    "refrigerant": "R-290 Eco-friendly",
+    "temperature_controller": "Electronic Controller with Touch Screen, 30 Day Data Storage, USB Download, Buzzer Alarm, 72 Hours Battery Backup",
+    "operating_condition": "+5°C to +43°C",
+    "safe_temperature_range": "+2°C to +8°C",
+    "energy_consumption_kwh_per_day": 1.23,
+    "no_of_shelves": 4,
+    "options": "Stainless Steel Shelves",
+    "insulation": "Cyclopentane",
+    "image": "pharmaceutical_ref.png"
+  },
+  {
+    "id": 7,
+    "name": "Vaccine Freezer",
+    "model": "VFW310H-HC",
+    "capacity_liters": {
+      "effective": 317,
+      "vaccine": 166,
+      "max_water_pack_freezing": 28.2
+    },
+    "dimensions_mm": "1230(W) x 720(D) x 965(H)",
+    "current_amp": 1.20,
+    "power_supply": "Single phase, 220-240V AC, 50Hz",
+    "refrigerant": "R-290 Eco-friendly",
+    "temperature_controller": "Electronic Controller",
+    "operating_condition": "+5°C to +43°C",
+    "safe_temperature_range": "-15°C to -25°C",
+    "min_hold_over_time": "4 hrs",
+    "energy_consumption_kwh_per_day": 2.27,
+    "no_of_baskets": 8,
+    "insulation": "Cyclopentane",
+    "image": "vaccine_freezer2.png"
+  },
+  {
+    "id": 8,
+    "name": "Vertical Showcase Refrigerator",
+    "model": "SRC810",
+    "gross_volume_liters": 695,
+    "net_volume_liters": 665,
+    "dimensions_mm": {
+      "external": "1025(W) x 668(D) x 1827(H)",
+      "internal": "945(W) x 538(D) x 1365(H)"
+    },
+    "refrigerant": "R-290",
+    "energy_consumption_kwh_per_day": 4.42,
+    "ambient_condition": "32.2°C & 65% RH",
+    "shelves": 10,
+    "product_visibility_sqm": 1.11,
+    "features": [
+      "Internal LED Lighting",
+      "Low Maintenance Condenser",
+      "Energy Efficient"
+    ],
+    "truck_loading": {
+      "truck_size_ft": 32,
+      "units_per_truck": 27
+    },
+    "image": "src810.png"
+  },
+
+  {
+    "id": 9,
+    "name": "Upright Chiller",
+    "model": "HRWH77MS4 / LS4",
+    "volume": "628 Liters",
+    "dimensions_mm": "700(W) x 818(D) x 1990(H)",
+    "temperature_range": "-2°C to +12°C",
+    "power_supply": "230V/50Hz",
+    "shelf": "4 nos. of shelves",
+    "image": "chiller1.png",
+    "description": "A compact yet high-capacity upright chiller ideal for commercial kitchens, restaurants, and food storage facilities. The HRWH77MS4 / LS4 offers a generous 628-liter volume with efficient cooling in the range of -2°C to +12°C. Designed with 4 durable shelves and a space-saving footprint, it ensures optimal organization and easy access to stored items. Its robust stainless steel body and 230V/50Hz power configuration make it a reliable solution for consistent refrigeration performance."
+  },
+
+  {
+    "id": 10,
+    "name": "Upright Chiller",
+    "model": "HRWH127MS4 / LS4",
+    "volume": "1119 Liters",
+    "dimensions_mm": "1200(W) x 818(D) x 1990(H)",
+    "temperature_range": "-2°C to +12°C",
+    "power_supply": "230V/50Hz",
+    "shelf": "8 nos. of shelves",
+    "image": "chiller2.png",
+    "description": "The HRWH127MS4 / LS4 is a high-capacity upright chiller designed to meet the demanding needs of commercial kitchens, hotels, and food service operations. With a spacious 1119-liter internal volume and 8 adjustable shelves, it offers ample and organized storage for perishable items. The unit operates efficiently within a temperature range of -2°C to +12°C and is powered by a standard 230V/50Hz supply. Built with durability and performance in mind, this chiller ensures consistent cooling and easy access, making it a dependable solution for large-scale refrigeration needs."
+  },
+
+  {
+    "id": 11,
+    "name": "Upright Chiller",
+    "model": "HRWH147MS4 / LS4",
+    "volume": "1365 Liters",
+    "dimensions_mm": "1400(W) x 818(D) x 1990(H)",
+    "temperature_range": "-2°C to +12°C",
+    "power_supply": "230V/50Hz",
+    "shelf": "8 nos. of shelves",
+    "image": "chiller3.png",
+    "description": "Engineered for high-performance cooling in busy commercial environments, the HRWH147MS4 / LS4 Upright Chiller offers an impressive 1365-liter storage capacity. With 8 robust shelves and a wide interior, it provides efficient organization and easy access to chilled items. Operating within a temperature range of -2°C to +12°C, and powered by a standard 230V/50Hz supply, this model is ideal for restaurants, hotels, and industrial kitchens that demand reliability and volume. Its sturdy build and sleek design make it a perfect addition to any professional setup"
+  },
+
+  {
+    "id": 12,
+    "name": "Upright Freezer",
+    "model": "HFWH77MS4 / LS4",
+    "volume": "628 Liters",
+    "dimensions_mm": "700(W) x 818(D) x 1990(H)",
+    "temperature_range": "-7°C to -25°C",
+    "power_supply": "230V/50Hz",
+    "shelf": "4 nos. of shelves",
+    "image": "chiller1.png",
+    "description": "The HFWH77MS4 / LS4 Upright Freezer is designed for precise and reliable freezing in commercial kitchens, food storage facilities, and healthcare environments. With a generous 628-liter capacity and 4 sturdy shelves, it offers organized, high-volume storage. Operating at temperatures ranging from -7°C to -25°C, this unit ensures safe preservation of perishable goods. Its compact footprint and durable construction, combined with a standard 230V/50Hz power supply, make it a dependable solution for long-term frozen storage."
+  },
+
+  {
+    "id": 13,
+    "name": "Upright Freezer",
+    "model": "HFWH127MS4 / LS4",
+    "volume": "1119 Liters",
+    "dimensions_mm": "1200(W) x 818(D) x 1990(H)",
+    "temperature_range": "-7°C to -25°C",
+    "power_supply": "230V/50Hz",
+    "shelf": "8 nos. of shelves",
+    "image": "chiller2.png",
+    "description": "The HFWH127MS4 / LS4 Upright Freezer is a high-capacity, heavy-duty solution designed for commercial kitchens, food storage units, and pharmaceutical environments. With a spacious 1119-liter capacity and 8 durable shelves, it provides organized and efficient freezing for large volumes of inventory. Operating within a deep freeze range of -7°C to -25°C and powered by a 230V/50Hz supply, this model delivers consistent performance and temperature stability. Its robust construction and vertical design make it ideal for operations where both capacity and footprint matter"
+  },
+
+  {
+    "id": 14,
+    "name": "Upright Freezer",
+    "model": "HFWH147MS4 / LS4",
+    "volume": "1365 Liters",
+    "dimensions_mm": "1400(W) x 818(D) x 1990(H)",
+    "temperature_range": "-7°C to -25°C",
+    "power_supply": "230V/50Hz",
+    "shelf": "8 nos. of shelves",
+    "image": "chiller3.png",
+    "description": "Built for demanding commercial environments, the HFWH147MS4 / LS4 Upright Freezer delivers an impressive 1365-liter storage capacity, making it ideal for bulk freezing needs. With 8 heavy-duty shelves and a temperature range of -7°C to -25°C, it ensures optimal preservation of frozen goods. Designed with efficiency and durability in mind, this freezer operates on a standard 230V/50Hz supply and features a space-efficient vertical layout—perfect for restaurants, hotels, cold storage units, and pharmaceutical use."
+  },
+
+  {
+    "id": 15,
+    "name": "Upright Chiller",
+    "model": "HRW-187MS4 / LS4",
+    "volume": "1720 Liters",
+    "dimensions_mm": "1800(W) x 818(D) x 1990(H)",
+    "temperature_range": "-2°C to +12°C",
+    "power_supply": "230V/50Hz",
+    "shelf": "12 nos. of shelves",
+    "image": "chiller4.png",
+    "description": "The HRW-187MS4 / LS4 Upright Chiller offers a massive 1720-liter storage capacity, making it a perfect fit for high-demand commercial kitchens, catering services, and food storage facilities. Featuring 12 adjustable shelves, it provides ample space and organized access to perishable items. With a precise cooling range of -2°C to +12°C and powered by a 230V/50Hz supply, this chiller ensures consistent performance and energy efficiency. Its robust design and large capacity make it ideal for operations requiring bulk refrigeration with reliability."
+  },
+
+  {
+    "id": 16,
+    "name": "Upright Freezer",
+    "model": "HFW-187MS4 / LS4",
+    "volume": "1720 Liters",
+    "dimensions_mm": "1800(W) x 818(D) x 1990(H)",
+    "temperature_range": "-7°C to -25°C",
+    "power_supply": "230V/50Hz",
+    "shelf": "12 nos. of shelves",
+    "image": "chiller4.png",
+    "description": "The HFW-187MS4 / LS4 Upright Freezer is engineered for high-volume freezing in commercial and industrial environments. With a generous 1720-liter capacity and 12 strong shelves, it allows for efficient organization and bulk storage of frozen goods. Operating within a temperature range of -7°C to -25°C and powered by a reliable 230V/50Hz supply, this freezer ensures optimal preservation of sensitive products. Its robust construction and large storage space make it a dependable choice for restaurants, food processors, and healthcare facilities."
+  },
+
+  {
+    "id": 17,
+    "name": "Upright Combi",
+    "model": "HRFWH77MS4 / LS4",
+    "volume": "Freezer: 305 Liters + Chiller: 305 Liters",
+    "dimensions_mm": "700(W) x 818(D) x 1990(H)",
+    "temperature_range": "Freezer: -16°C to -25°C + Chiller: -2°C to +12°C",
+    "power_supply": "230V/50Hz",
+    "shelf": "4 nos. of shelves",
+    "image": "chiller1.png",
+    "description": "The HRFWH77MS4 / LS4 Upright Combi unit combines both freezer and chiller functionalities in a compact vertical design—perfect for space-conscious commercial kitchens and food service operations. With a dual compartment layout offering 305 liters each for freezing and chilling, it provides efficient temperature control across a wide range: -16°C to -25°C for the freezer and -2°C to +12°C for the chiller. Equipped with 4 sturdy shelves and powered by a 230V/50Hz supply, this versatile unit ensures organized, reliable storage for varied refrigeration needs."
+  },
+
+  {
+    "id": 18,
+    "name": "Upright Combi",
+    "model": "HRFWH127MS4 / LS4",
+    "volume": "Freezer: 510 Liters + Chiller: 510 Liters",
+    "dimensions_mm": "1200(W) x 818(D) x 1990(H)",
+    "temperature_range": "Freezer: -7°C to -25°C + Chiller: -2°C to +12°C",
+    "power_supply": "230V/50Hz",
+    "shelf": "8 nos. of shelves",
+    "image": "chiller2.png",
+    "description": "The HRFWH127MS4 / LS4 Upright Combi is a high-capacity dual-temperature unit designed for commercial kitchens and cold storage applications that require both freezing and chilling in one appliance. With a balanced 510-liter freezer and 510-liter chiller section, it provides a total of 1020 liters of organized storage. The freezer operates between -7°C to -25°C, while the chiller maintains a range of -2°C to +12°C. Featuring 8 sturdy shelves and powered by a standard 230V/50Hz supply, this combi model offers versatility, space efficiency, and reliable performance for diverse refrigeration needs."
+  },
+
+  {
+    "id": 19,
+    "name": "Long Glass Units",
+    "model": "HRWH77LS4-LG",
+    "volume": "628 Liters",
+    "dimensions_mm": "700(W) x 818(D) x 2050(H)",
+    "temperature_range": "-2°C to +12°C",
+    "power_supply": "230V/50Hz",
+    "shelf": "Full glass door - 4 shelves",
+    "image": "long_glass1.png",
+    "description": "The HRWH77LS4-LG is a stylish long glass upright chiller designed for display and efficient storage. With 4 shelves and a 628-liter capacity, it’s ideal for commercial establishments requiring product visibility and reliable cooling between -2°C to +12°C."
+  },
+
+  {
+    "id": 20,
+    "name": "Long Glass Units",
+    "model": "HRWH127LS4-LG",
+    "volume": "1119 Liters",
+    "dimensions_mm": "1200(W) x 818(D) x 2050(H)",
+    "temperature_range": "-2°C to +12°C",
+    "power_supply": "230V/50Hz",
+    "shelf": "Full glass door - 8 shelves",
+    "image": "long_glass2.png",
+    "description": "The HRWH127LS4-LG offers 1119 liters of chilled display space in a full-glass upright format. Built for both storage and presentation, this unit includes 8 adjustable shelves and operates efficiently between -2°C to +12°C."
+  },
+
+  {
+    "id": 21,
+    "name": "Static Range",
+    "model": "HRW-76",
+    "volume": "507 Liters",
+    "dimensions_mm": "680(W) x 760(D) x 1890(H)",
+    "temperature_range": "-2°C to +12°C",
+    "power_supply": "230V/50Hz",
+    "shelf": "4 nos",
+    "image": "static_range1.png",
+    "description": "The HRW-76 Static Range Chiller is a compact and efficient refrigeration solution, ideal for small commercial kitchens, cafes, and convenience stores. With a 507-liter capacity and 4 fixed shelves, it offers organized storage for a variety of perishable items. Operating within a temperature range of -2°C to +12°C and powered by a 230V/50Hz supply, this unit ensures consistent cooling performance. Its space-saving design and static cooling system make it a reliable choice for everyday refrigeration needs."
+  },
+
+  {
+    "id": 22,
+    "name": "Static Range",
+    "model": "HRW-126",
+    "volume": "988 Liters",
+    "dimensions_mm": "1220(W) x 760(D) x 1890(H)",
+    "temperature_range": "-2°C to +12°C",
+    "power_supply": "230V/50Hz",
+    "shelf": "8 nos",
+    "image": "static_range2.png",
+    "description": "The HRW-126 Static Range Chiller is built for high-volume refrigeration with a generous 988-liter capacity, making it ideal for restaurants, supermarkets, and catering services. Equipped with 8 fixed shelves, it allows for efficient organization and storage of a wide range of perishable goods. Operating within a temperature range of -2°C to +12°C and powered by a 230V/50Hz supply, this static cooling unit ensures dependable performance and energy efficiency. Its wide design and solid build make it a practical solution for businesses needing reliable cold storage."
+  },
+
+  {
+    "id": 23,
+    "name": "Static Range",
+    "model": "RTSW97MS4-GNTE",
+    "volume": "270 Liters",
+    "dimensions_mm": "900(W) x 700(D) x 1056(H)",
+    "temperature_range": "-2°C to +8°C",
+    "power_supply": "230V/50Hz",
+    "shelf": "4 nos. shelves / 4 rail sets",
+    "image": "static_range3.png",
+    "description": "The RTSW97MS4-GNTE Static Range Refrigerator is a compact and efficient undercounter solution designed for commercial kitchens with limited space. With a 270-liter capacity, 4 shelves, and 4 GN-compatible rail sets, it offers versatile storage for ingredients and perishables. The unit maintains a precise temperature range of -2°C to +8°C, ensuring freshness and food safety. Powered by a 230V/50Hz supply, it combines low energy consumption with dependable performance—ideal for restaurants, cafes, and prep stations."
+  },
+
+  {
+    "id": 24,
+    "name": "Static Range",
+    "model": "RTSW137MS4-GNTE",
+    "volume": "417 Liters",
+    "dimensions_mm": "1350(W) x 700(D) x 1056(H)",
+    "temperature_range": "-2°C to +8°C",
+    "power_supply": "230V/50Hz",
+    "shelf": "6 nos. shelves / 6 rail sets",
+    "image": "static_range4.png",
+    "description": "The RTSW137MS4-GNTE Static Range Refrigerator is a versatile undercounter chiller designed for professional kitchens requiring expanded storage in a compact form. With a 417-liter capacity, 6 shelves, and 6 GN-compatible rail sets, it provides flexible storage for food prep and service areas. Operating within a temperature range of -2°C to +8°C and powered by a 230V/50Hz supply, this unit ensures consistent cooling performance. Its durable design and efficient layout make it an excellent choice for restaurants, hotels, and catering operations."
+  },
+
+  {
+    "id": 25,
+    "name": "Drawer Series",
+    "model": "RTDW137MS4-33",
+    "volume": "305 Liters",
+    "dimensions_mm": "1300(W) x 700(D) x 850(H)",
+    "temperature_range": "-2°C to +12°C",
+    "power_supply": "230V/50Hz",
+    "shelf": "NA",
+    "image": "drawer_series1.png",
+    "description": "The RTDW137MS4-33 Drawer Series Refrigerator is a space-efficient, ergonomic solution tailored for high-paced commercial kitchens. With a 305-liter capacity and a drawer-style layout, it offers quick access and organized storage for frequently used ingredients. Designed to operate within a temperature range of -2°C to +12°C and powered by a 230V/50Hz supply, it ensures consistent cooling performance. Ideal for prep stations and compact workspaces, this model enhances kitchen workflow while maintaining optimal food safety standards."
+  },
+
+  {
+    "id": 26,
+    "name": "Drawer Series",
+    "model": "RTDW187MS4-333",
+    "volume": "461 Liters",
+    "dimensions_mm": "1765(W) x 700(D) x 850(H)",
+    "temperature_range": "-2°C to +12°C",
+    "power_supply": "230V/50Hz",
+    "shelf": "NA",
+    "image": "drawer_series2.png",
+    "description": "The RTDW187MS4-333 Drawer Series Refrigerator is a high-capacity, drawer-style refrigeration solution built for efficiency in demanding commercial kitchens. With a spacious 461-liter capacity and an easy-access drawer design, it allows for organized storage and quick retrieval of ingredients during peak operations. Operating within a temperature range of -2°C to +12°C and powered by a 230V/50Hz supply, this model ensures consistent and reliable cooling. Its wide footprint and ergonomic configuration make it ideal for prep stations, hotels, and high-volume foodservice environments"
+  }
+]
+
+  

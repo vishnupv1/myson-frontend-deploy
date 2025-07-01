@@ -746,7 +746,7 @@ td:first-child {
 
 /* Child: YouTubeShort Component Wrapper */
 .testimonial-video-section > :last-child { /* Targeting the YouTubeShort component's wrapper div */
-  flex:auto; /* YouTube Short takes less space, making it narrower and thus shorter */
+  flex: auto; /* YouTube Short takes less space, making it narrower and thus shorter */
   max-width: 30%; /* Cap the max width to ensure it doesn't get too wide - Reduced from 35% */
   min-width: 0; /* Allow shrinking */
 }

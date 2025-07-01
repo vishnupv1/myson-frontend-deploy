@@ -1,12 +1,9 @@
 const products = [
   {
     _id: 1,
-    name: "Classeq Glass Washer G400",
+    name: "Ice Cube Machine",
     description: [
-      "G400 is an easy to operate glass washer with a 400 x 400mm basket that holds 16 pint-sized glasses.",
-      " With its two minute wash cycles, this machine is capable of cleaning up to 480 pint glasses per hour.",
-      "With a digital LED display, intuitive colour coded lighting and universally recognised symbols, this machine is incredibly easy to use.",
-      "Additionally, its clever software constantly monitors wash cycles, temperatures, chemical usage and any errors giving valuable data which is used to improve operational efficiencies.",
+      "Compact cube ice maker designed for cafés, bars, and small restaurants. Produces high-quality cube ice.",
     ],
     images: [
       "https://www.classeq.co.uk/uploads/products/classeq-g400/G400-basket-on-door.png",

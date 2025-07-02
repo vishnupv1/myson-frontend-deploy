@@ -1,0 +1,108 @@
+.footer-container {
+    background-color: #000000; /* Black background */
+    color: #ffffff; /* White text color */
+    padding: 40px 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    font-family: 'Arial', sans-serif;
+}
+
+.footer-section {
+    margin-bottom: 30px;
+}
+
+.footer-section h5 {
+    font-size: 1.2em;
+    margin-bottom: 15px;
+    color: #ffffff; /* Ensure heading is white */
+    border-bottom: 2px solid #555555;
+    padding-bottom: 5px;
+}
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 10px;
+    color: #cccccc; /* Lighter color for list items */
+}
+
+.footer-section ul li a {
+    color: #cccccc; /* Lighter color for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-section ul li a:hover {
+    color: #ffffff;
+}
+
+.footer-logo-section {
+    flex: 2;
+    min-width: 250px;
+    margin-right: 30px;
+}
+
+.footer-logo-section img {
+    max-width: 150px;
+    margin-bottom: 15px;
+}
+
+.footer-logo-section p {
+    font-size: 0.9em;
+    line-height: 1.6;
+    color: #cccccc;
+}
+
+.footer-social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.footer-social-icons a {
+    color: #ffffff;
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+.footer-social-icons a:hover {
+    color: #5B93FF; /* A subtle hover effect */
+}
+
+.footer-bottom-text {
+    width: 100%;
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #333333;
+    font-size: 0.8em;
+    color: #999999;
+}
+
+@media (max-width: 768px) {
+    .footer-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .footer-section {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .footer-logo-section {
+        margin-right: 0;
+        margin-bottom: 20px;
+    }
+
+    .footer-social-icons {
+        justify-content: center;
+    }
+}

@@ -124,12 +124,19 @@
     color: white;
     border: none;
     border-radius: 8px; /* Slightly more rounded corners */
-    padding: 12px 28px; /* Comfortable padding */
-    font-size: 1rem;
+    padding: 10px 15px; /* Adjusted padding */
+    font-size: 0.9rem; /* Reduced from 1rem */
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease; /* Smooth transitions for hover effects */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Display ellipsis for overflowed text */
+    /* Ensure min-width is not too restrictive if set elsewhere */
+    min-width: unset; /* Remove any restrictive min-width */
+    max-width: 100%; /* Ensure button doesn't exceed its container */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
 }
 
 .card-button:hover {
@@ -147,9 +154,8 @@
 @media (max-width: 768px) {
     .card-button {
         /* ... existing code ... */
-        padding: 10px 20px; /* Adjust padding for smaller screens */
-        font-size: 0.9rem;
-        /* ... existing code ... */
+        font-size: 0.8rem; /* Further reduced for mobile */
+        padding: 8px 12px; /* Adjusted mobile padding */
     }
 }
 

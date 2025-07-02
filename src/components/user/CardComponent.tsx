@@ -106,7 +106,7 @@ const CardComponent: React.FC<CardComponentProps> = ({ title, products: customPr
                 <Card.Title className="card-title">{el.name}</Card.Title>
                 {/* The button will now be on a new line below the title */}
                 <Button className="card-button" onClick={() => handleSelectProduct(el._id)}>
-                  {isMobile ? 'ADD +' : 'ADD TO CART'}
+                  {isMobile ? 'View Product' : 'View Product'}
                 </Button>
               </Card.Body>
             </Card>

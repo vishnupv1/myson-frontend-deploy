@@ -170,7 +170,7 @@ const BrandProducts: React.FC = () => {
                   <Card.Body>
                     <Card.Title className="card-title">{el.name}</Card.Title>
                   </Card.Body>
-                  <Button className="card-button">{isMobile ? 'ADD +' : 'ADD TO CART'}</Button>
+                  <Button className="card-button">{isMobile ? 'View Product +' : 'View Product'}</Button>
                 </Card>
               ))}
             </div>

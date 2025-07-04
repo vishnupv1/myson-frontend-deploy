@@ -47,13 +47,13 @@ const AppUser: React.FC = () => {
     <div className="App">
       <FormComponent />
       <HeaderComponent />
-      <TopBrands />
-      <CategoryComponents />
       <div className="video-row-container">
         <BannerSlider />
       </div>
-      <CardComponent title="Best Sellers" products={iceMakerData} />
-      <CardComponent title="Trending Products" products={iceMakerData} />
+      <TopBrands />
+      <CategoryComponents />
+      <CardComponent title="Best Sellers" products={iceMakerData} limit={5} />
+      {/* <CardComponent title="Trending Products" products={iceMakerData} /> */}
       <OfferComponent />
       <CardComponent title="New Arrival" products={iceMakerData} />
       <CardComponent title="Recently Visited" products={iceMakerData} />

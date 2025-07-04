@@ -87,6 +87,7 @@ const CardComponent: React.FC<CardComponentProps> = ({ title, products: customPr
           fontWeight: 600,
           textAlign: 'left',
           fontFamily: 'sans-serif',
+          marginLeft: '12px',
         }}
       >
         {title}

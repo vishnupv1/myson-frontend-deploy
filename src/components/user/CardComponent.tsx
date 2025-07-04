@@ -102,6 +102,8 @@ const CardComponent: React.FC<CardComponentProps> = ({ title, products: customPr
                 src={el.images[0]}
                 alt={el.name}
               />
+              {/* Sale Ribbon */}
+              <div className="sale-ribbon">SALE</div>
               <Card.Body className="card-body-content"> {/* Add a class for styling */}
                 <Card.Title className="card-title">{el.name}</Card.Title>
                 {/* The button will now be on a new line below the title */}

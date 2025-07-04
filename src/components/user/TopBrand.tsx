@@ -14,19 +14,6 @@ const images: string[] = [
   'https://www.merrychef.com/images/shared/logos/Merrychef_PMS186C.svg',
 ];
 
-const names: string[] = [
-  'Astoria',
-  'Hamilton Beach',
-  'Winter halter',
-  'Stella',
-  'Western',
-  'Hoshizaki',
-  'CREM',
-  'Convotherm',
-  'Lincoln',
-  'Merrychef',
-];
-
 const TopBrands: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
@@ -61,7 +48,7 @@ const TopBrands: React.FC = () => {
 
   return (
     <div className="main-container">
-      <h5
+      {/* <h5
         style={{
           fontWeight: 600,
           textAlign: 'left',
@@ -69,7 +56,7 @@ const TopBrands: React.FC = () => {
         }}
       >
         Shop from Top Brands
-      </h5>
+      </h5> */}
 
       <div
         ref={containerRef}
@@ -87,9 +74,7 @@ const TopBrands: React.FC = () => {
                 display: 'inline-block',
                 verticalAlign: 'top',
                 borderRadius: '10px',
-                boxShadow: '0px 0.2px 2px 0px rgba(0, 0, 0, 0.2)',
                 padding: '10px',
-                backgroundColor: 'white',
               }}
             >
               <img
@@ -103,12 +88,6 @@ const TopBrands: React.FC = () => {
                   marginBottom: '10px',
                 }}
               />
-              <div
-                className="top-brand-name"
-                style={{ fontWeight: 500, fontSize: '14px', color: '#333' }}
-              >
-                {names[index % names.length]}
-              </div>
             </div>
           ))}
         </div>

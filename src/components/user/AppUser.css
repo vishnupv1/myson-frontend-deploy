@@ -12,7 +12,9 @@
     display: flex;
     justify-content: space-between;
     /* width: 100%; */
-    align-items: center
+    align-items: center;
+    position: relative;
+    z-index: 100; /* Ensure navbar elements stay above ribbons */
 }
 
 .homepage {
@@ -22,6 +24,8 @@
     border-bottom: solid 3px whitesmoke;
     padding: 10px 30px;
     margin: 0 0 0 10px;
+    position: relative;
+    z-index: 100; /* Ensure navbar stays above ribbons */
 }
 
 .testimonial {
@@ -194,6 +198,12 @@ footer {
 
 .hamburger {
     display: none;
+}
+
+/* Ensure navbar elements stay above ribbons */
+.navbar, .navbar-brand, .navbar-nav, .navbar-toggler {
+    position: relative;
+    z-index: 1000 !important;
 }
 
 
@@ -481,6 +491,7 @@ footer {
     margin: 20px;
     padding: 80px;
     border-top: 3px solid whitesmoke;
+    background-color: #f8f9fa; /* Pale background color for offer section */
 }
 
 .offer-under {
@@ -680,14 +691,14 @@ td:first-child {
   flex-direction: row;
   justify-content: center; /* Center the single video container */
   align-items: flex-start; 
-  padding: 20px 5%; 
+  padding: 20px 0; /* Remove horizontal padding for full width */
   margin: 30px 0; 
 }
 
 /* Styling for the direct child (banner-container for local video) */
 .video-row-container > div {
-  flex: 0 0 70%; /* Video takes 70% of the container width */
-  max-width: 70%; /* Ensure it doesn't exceed 70% */
+  flex: 0 0 100%; /* Video takes full width */
+  max-width: 100%; /* Ensure it takes full width */
   box-sizing: border-box;
 }
 
@@ -714,13 +725,13 @@ td:first-child {
   .video-row-container {
     flex-direction: column; /* Stack videos vertically */
     align-items: center; /* Center them in the column */
-    padding: 20px 5%; /* Adjust padding for mobile if needed */
+    padding: 20px 0; /* Remove horizontal padding for full width on mobile */
   }
 
   .video-row-container > div {
     flex-basis: auto; /* Reset flex-basis */
-    width: 90%; /* Video takes more width when stacked */
-    max-width: 500px; /* But not more than 500px to avoid being too wide on mobile */
+    width: 100%; /* Video takes full width on mobile */
+    max-width: 100%; /* No max-width constraint on mobile */
     /* margin-bottom removed as there's only one item */
   }
 }
@@ -733,6 +744,7 @@ td:first-child {
   align-items: flex-start; /* Or 'stretch' if we want to force equal height, but video aspect ratio needs care */
   gap: 20px;
   padding: 20px 5%; /* Match padding of other sections */
+  background-color: #f8f9fa; /* Pale background color for testimonial section */
 }
 
 /* Child: Testimonial Component Wrapper (assuming Testimonial component is wrapped in a div or is a block) */

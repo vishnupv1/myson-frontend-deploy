@@ -32,10 +32,7 @@ const AppUser: React.FC = () => {
       currentIndex--;
 
       // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex],
-        array[currentIndex],
-      ];
+      [array[currentIndex], array[randomIndex]] = [array[randomIndex], array[currentIndex]];
     }
 
     return array;
@@ -50,8 +47,8 @@ const AppUser: React.FC = () => {
     <div className="App">
       <FormComponent />
       <HeaderComponent />
-      <CategoryComponents />
       <TopBrands />
+      <CategoryComponents />
       <div className="video-row-container">
         <BannerSlider />
       </div>

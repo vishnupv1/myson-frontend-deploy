@@ -1,9 +1,11 @@
-import { Sparkles, Zap } from "lucide-react"
-import { Banner } from "../components/banner"
-import { BrandsSlider } from "../components/brandsMarquee"
-import { Categories } from "../components/categories"
-import { ProductList } from "../components/productsList"
-import { TestimonialSection } from "../components/testimonialSection"
+import { HeroSection } from "../components/landing/HeroSection";
+import { CategoriesSection } from "../components/landing/CategoriesSection";
+import { BrandsMarquee } from "../components/landing/BrandsMarquee";
+import { FeaturedProductsSection } from "../components/landing/FeaturedProductsSection";
+import { BannerSection } from "../components/landing/BannerSection";
+import { TestimonialsSection } from "../components/landing/TestimonialsSection";
+import { Zap, Sparkles } from "lucide-react";
+
 // Fake product data
 const featuredProducts = [
     {
@@ -76,45 +78,15 @@ const newArrivals = [
 ];
 
 export const Home = () => {
-
     return (
-        <main className="">
-            <nav className="bg-red-50 border-t border-gray-100">
-                <div className="container mx-auto px-4 py-2 flex justify-around flex-wrap gap-x-4 text-sm text-gray-700">
-                    {[
-                        'Store Locator',
-                        'Terms & Conditions',
-                        'Privacy Policy',
-                        'Dishwasher',
-                        'Kitchenware',
-                        'Contact',
-                        'About',
-                    ].map((item) => (
-                        <a
-                            key={item}
-                            href={'/' + item.toLowerCase().replace(/ & /, '-').replace(/\s+/g, '-')}
-                            className="hover:text-red-600 transition-colors"
-                        >
-                            {item}
-                        </a>
-                    ))}
-                </div>
-            </nav>
-            <Categories />
-            <BrandsSlider />
-            <div className="flex justify-center py-12">
-                <video
-                    className="w-[60%] rounded-md shadow-lg"
-                    src="/intro.mp4"
-                    autoPlay
-                    muted
-                >
-                </video>
-            </div>
-            <ProductList data={featuredProducts} heading="Best Selling" showViewMore={false} icon={Zap} />
-            <ProductList data={newArrivals} heading="New Arrivals" icon={Sparkles}/>
-            <Banner />
-            <TestimonialSection />
+        <main>
+            <HeroSection />
+            <CategoriesSection />
+            <BrandsMarquee />
+            <FeaturedProductsSection products={featuredProducts} heading="Best Selling" icon={Zap} />
+            <FeaturedProductsSection products={newArrivals} heading="New Arrivals" icon={Sparkles} />
+            <BannerSection />
+            <TestimonialsSection />
         </main>
-    )
+    );
 }

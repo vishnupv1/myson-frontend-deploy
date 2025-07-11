@@ -39,7 +39,7 @@ export const ProductList = ({ data, heading, showViewMore = true, icon: Icon }: 
 
             {showViewMore && (
                 <div className="mt-8 text-center">
-                    <button className="px-6 py-2 inline-flex gap-2 bg-red-600 text-white text-lg rounded-full hover:bg-red-700 transition cursor-pointer">
+                    <button className="px-6 py-2 inline-flex gap-2 bg-red-400 text-white text-lg rounded-full hover:bg-red-700 transition cursor-pointer">
                         More Products
                         <LucideArrowRight/>
                     </button>

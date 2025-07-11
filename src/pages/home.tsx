@@ -81,8 +81,8 @@ export const Home = () => {
     return (
         <main>
             <HeroSection />
-            <CategoriesSection />
             <BrandsMarquee />
+            <CategoriesSection />
             <FeaturedProductsSection products={featuredProducts} heading="Best Selling" icon={Zap} />
             <FeaturedProductsSection products={newArrivals} heading="New Arrivals" icon={Sparkles} />
             <BannerSection />

@@ -1,4 +1,5 @@
 import React from "react";
+import { ProductsGridSection } from "../components/landing/ProductsGridSection";
 
 const products = [
     { id: 1, name: 'Bosch Dishwasher', image: 'https://picsum.photos/seed/bosch-dishwasher/300/200' },
@@ -22,47 +23,7 @@ const products = [
 ];
 
 export const Products: React.FC = () => {
-    return (
-        <div className="container mx-auto px-8 py-8">
-            <div className="flex gap-8">
-                
-                {/* Dummy Filter Section */}
-                <aside className="w-1/6 p-4 rounded-lg h-[calc(100vh-4rem)] sticky top-0">
-                    <h2 className="text-xl font-semibold mb-4">Filters</h2>
-                    <div className="mb-2">
-                        <label className="block mb-1 font-medium">Category</label>
-                        <select className="w-full p-2 border rounded">
-                            <option>All</option>
-                            <option>Kitchen</option>
-                            <option>Home</option>
-                        </select>
-                    </div>
-                    <div className="mb-2">
-                        <label className="block mb-1 font-medium">Price Range</label>
-                        <input type="range" min="0" max="100000" className="w-full" />
-                    </div>
-                    <button className="mt-4 w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition">Apply</button>
-                </aside>
-
-                <main className="flex-1">
-                    <section className="px-16">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-                            {products.map(({ id, name, image }) => (
-                                <div key={id} className="flex flex-col overflow-clip rounded-xl bg-white shadow-md transition-shadow hover:shadow-lg">
-                                    <img
-                                        src={image}
-                                        alt={name}
-                                        className="w-full h-64 object-cover rounded-md"
-                                    />
-                                    <div className="p-4 font-normal text-lg text-center">{name}</div>
-                                </div>
-                            ))}
-                        </div>
-                    </section>
-                </main>
-            </div>
-        </div>
-    );
+    return <ProductsGridSection products={products} />;
 };
 
 export default Products;

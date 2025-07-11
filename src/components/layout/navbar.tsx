@@ -2,7 +2,7 @@ import { HomeIcon, HeartIcon, UserIcon, SearchIcon } from 'lucide-react';
 
 export const Navbar = ()=> {
     return (
-        <header className="bg-white shadow-sm">
+        <header className="bg-white shadow-sm border-b border-gray-200">
             <div className="container mx-auto flex items-center justify-between px-4 py-3">
                 <a href="/" className="flex items-center">
                     <img src="/brand.logo.png" alt="Myson" className="sm:h-16 w-auto" />

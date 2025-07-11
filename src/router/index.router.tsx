@@ -4,6 +4,7 @@ import { Home } from "../pages/home";
 import { Navbar } from "../components/layout/navbar";
 import { Footer } from "../components/layout/footer";
 import Products from "../pages/product";
+import ProductDetail from "../pages/productDetail";
 import AdminLayout from "../components/admin/AdminLayout";
 import LoginPage from "../pages/admin/LoginPage";
 import DashboardPage from "../pages/admin/DashboardPage";
@@ -52,6 +53,10 @@ export const AppRouter = createBrowserRouter([
             {
                 path: "products",
                 element: <Products />
+            },
+            {
+                path: "products/:id",
+                element: <ProductDetail />
             }
         ],
     },

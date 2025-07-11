@@ -1,4 +1,4 @@
-import React from "react";
+import { Card, CardHeader } from "../ui/card";
 
 export const ProductsGridSection = ({ products, filters, onFilterChange }) => {
     return (
@@ -25,14 +25,9 @@ export const ProductsGridSection = ({ products, filters, onFilterChange }) => {
                 <main className="flex-1">
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                         {products.map(({ id, name, image }) => (
-                            <div key={id} className="bg-white rounded-xl shadow hover:shadow-lg transition p-4 flex flex-col cursor-pointer group">
-                                <img
-                                    src={image}
-                                    alt={name}
-                                    className="w-full h-56 object-cover rounded-lg mb-4 group-hover:scale-105 transition-transform duration-200"
-                                />
-                                <div className="font-semibold text-gray-900 text-lg text-center">{name}</div>
-                            </div>
+                            <Card key={id} image={image}>
+                                <CardHeader>{name}</CardHeader>
+                            </Card>
                         ))}
                     </div>
                 </main>

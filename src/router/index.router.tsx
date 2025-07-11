@@ -3,7 +3,7 @@ import { Outlet } from "react-router";
 import { Home } from "../pages/home";
 import { Navbar } from "../components/layout/navbar";
 import { Footer } from "../components/layout/footer";
-import ProductsGrid from "../pages/ProductsGrid";
+import Products from "../pages/product";
 
 const Layout = () => (
     <div className="h-dvh max-w-[1920px]">
@@ -24,7 +24,7 @@ export const AppRouter = createBrowserRouter([
             },
             {
                 path: "products",
-                element: <ProductsGrid />
+                element: <Products />
             }
         ],
     },

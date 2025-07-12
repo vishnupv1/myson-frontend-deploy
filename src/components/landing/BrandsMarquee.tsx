@@ -1,24 +1,18 @@
 const brands = [
-    "https://picsum.photos/seed/brand1/300/300",
-    "https://picsum.photos/seed/brand2/300/300",
-    "https://picsum.photos/seed/brand3/300/300",
-    "https://picsum.photos/seed/brand4/300/300",
-    "https://picsum.photos/seed/brand5/300/300",
-    "https://picsum.photos/seed/brand6/300/300",
-    "https://picsum.photos/seed/brand7/300/300",
-    "https://picsum.photos/seed/brand8/300/300",
-    "https://picsum.photos/seed/brand9/300/300",
-    "https://picsum.photos/seed/brand10/300/300",
-    "https://picsum.photos/seed/brand11/300/300",
-    "https://picsum.photos/seed/brand12/300/300",
-    "https://picsum.photos/seed/brand13/300/300",
-    "https://picsum.photos/seed/brand14/300/300",
-    "https://picsum.photos/seed/brand15/300/300",
-    "https://picsum.photos/seed/brand16/300/300"
+    'https://vtlogo.com/wp-content/uploads/2021/01/astoria-vector-logo-small.png',
+    'https://getlogo.net/wp-content/uploads/2021/08/hamilton-beach-logo-vector.png',
+    'https://mfk.co.id/wp-content/uploads/2020/12/winterhalter-logo.png',
+    'https://www.pi-india.com/uploaded_files/d679bfae31954b.jpg',
+    'https://www.rahatindivanam.com/wp-content/uploads/2022/06/Western-Ref..png',
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzF5JruCxKftxjAgWMkHpjCqtm80UgfFdy1PXbvS0DGQQEu4_sDlCwfCKX96QbjajkPW4&usqp=CAU',
+    'https://info.welbilt.com/hs-fs/hubfs/RGB_CRE_Grey-1.png?width=257&height=77&name=RGB_CRE_Grey-1.png',
+    'https://www.convotherm.com/images/shared/logos/Convotherm_Color.svg',
+    'https://www.lincolnfp.com/images/shared/logos/Lincoln_Black.svg',
+    'https://www.merrychef.com/images/shared/logos/Merrychef_PMS186C.svg',
 ];
 
 export const BrandsMarquee = () => (
-    <section className="py-8 bg-gradient-to-r from-white to-gray-50">
+    <section className="py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
             <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">Shop from Top Brands</h2>
             <div className="relative w-full mask-fade-x">
@@ -26,12 +20,12 @@ export const BrandsMarquee = () => (
                     {[...brands, ...brands].map((src, i) => (
                         <div
                             key={i}
-                            className="max-w-40 aspect-square flex items-center justify-center bg-white rounded-2xl shadow-md overflow-hidden"
+                            className="max-w-40 aspect-square flex items-center justify-center overflow-hidden"
                         >
                             <img
                                 src={src}
                                 alt={`Brand ${i % brands.length + 1}`}
-                                className="w-full h-full object-cover"
+                                className="w-full h-full object-contain mix-blend-darken"
                             />
                         </div>
                     ))}

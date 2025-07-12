@@ -5,6 +5,7 @@ import { FeaturedProductsSection } from "../components/landing/FeaturedProductsS
 import { BannerSection } from "../components/landing/BannerSection";
 import { TestimonialsSection } from "../components/landing/TestimonialsSection";
 import { Zap, Sparkles } from "lucide-react";
+import { VideoSection } from "../components/landing/videoSection";
 
 // Fake product data
 const featuredProducts = [
@@ -81,6 +82,7 @@ export const Home = () => {
     return (
         <main>
             <HeroSection />
+            <VideoSection/>
             <BrandsMarquee />
             <CategoriesSection />
             <FeaturedProductsSection products={featuredProducts} heading="Best Selling" icon={Zap} />

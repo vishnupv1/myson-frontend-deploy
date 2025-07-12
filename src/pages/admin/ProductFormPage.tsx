@@ -3,13 +3,11 @@ import { useNavigate, useParams } from 'react-router';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { 
-    Save, 
-    ArrowLeft, 
-    Upload, 
-    X, 
-    Plus,
-    Trash2
+import {
+    Save,
+    ArrowLeft,
+    Upload,
+    X
 } from 'lucide-react';
 import { productsAPI, categoriesAPI, brandsAPI } from '../../services/api';
 import toast from 'react-hot-toast';

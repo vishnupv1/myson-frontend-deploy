@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import { Link, useLocation, Outlet } from 'react-router';
 import { useAuth } from '../../contexts/AuthContext';
 import { 

@@ -20,7 +20,7 @@ export const BrandsMarquee = () => (
                     {[...brands, ...brands].map((src, i) => (
                         <div
                             key={i}
-                            className="max-w-40 aspect-square flex items-center justify-center overflow-hidden"
+                            className="max-w-24 md:max-w-40 aspect-square flex items-center justify-center overflow-hidden"
                         >
                             <img
                                 src={src}

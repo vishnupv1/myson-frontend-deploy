@@ -24,9 +24,14 @@ body{
 
 /* Edge fade mask for horizontal scroll sections */
 .mask-fade-x {
-    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
-    mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%);
 }
+
+/* .hero-fade-rtl { */
+    /* -webkit-mask-image: linear-gradient(to left, black 30%,  transparent );
+    mask-image: linear-gradient(to left, black 0%,  transparent  ); */
+/* } */
 
 button{
     @apply cursor-pointer font-semibold

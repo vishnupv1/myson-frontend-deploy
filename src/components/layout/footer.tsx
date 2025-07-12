@@ -27,18 +27,18 @@ export const Footer = () => (
             {/* Social Icons */}
             <div className="text-sm">
                 <h3 className="text-lg text-white mb-4 ">Socials</h3>
-                <div className="flex flex-col gap-6">
+                <div className="flex flex-col gap-3">
                     <a href="https://youtube.com/@myson-planet" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="hover:text-red-500 transition flex items-center gap-3">
-                        <Youtube size={28} />
-                        <span className="text-gray-400">YouTube</span>
+                        <Youtube size={20} />
+                        <span className="text-gray-400">@myson-planet</span>
                     </a>
                     <a href="https://www.instagram.com/mysonfoodcaredisplaysolutions/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-pink-400 transition flex items-center gap-3">
-                        <Instagram size={28} />
-                        <span className="text-gray-400">Instagram</span>
+                        <Instagram size={20} />
+                        <span className="text-gray-400">mysonfoodcaredisplaysolutions</span>
                     </a>
                     <a href="https://www.facebook.com/MysonGroupofCompanies" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-blue-600 transition flex items-center gap-3">
-                        <Facebook size={28} />
-                        <span className="text-gray-400">Facebook</span>
+                        <Facebook size={20} />
+                        <span className="text-gray-400">MysonGroupofCompanies</span>
                     </a>
                 </div>
             </div>

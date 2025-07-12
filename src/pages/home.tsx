@@ -5,7 +5,7 @@ import { FeaturedProductsSection } from "../components/landing/FeaturedProductsS
 import { BannerSection } from "../components/landing/BannerSection";
 import { TestimonialsSection } from "../components/landing/TestimonialsSection";
 import { Zap, Sparkles } from "lucide-react";
-import { VideoSection } from "../components/landing/videoSection";
+import { VideoSection } from "../components/landing/videoBannerSection";
 
 // Fake product data
 const featuredProducts = [

@@ -1,6 +1,9 @@
+import { useNavigate } from "react-router";
 import { Card, CardHeader } from "../ui/card";
 
 export const ProductsGridSection = ({ products }) => {
+    const navigate = useNavigate();
+
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <div className="flex gap-8">
@@ -23,9 +26,9 @@ export const ProductsGridSection = ({ products }) => {
                 </aside>
                 {/* Product Grid */}
                 <main className="flex-1">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8">
                         {products.map(({ id, name, image }) => (
-                            <Card key={id} image={image}>
+                            <Card key={id} image={image} onClick={()=>navigate("/products/1")} className="cursor-pointer">
                                 <CardHeader>{name}</CardHeader>
                             </Card>
                         ))}

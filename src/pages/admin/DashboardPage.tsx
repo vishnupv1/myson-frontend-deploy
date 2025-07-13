@@ -74,10 +74,10 @@ const DashboardPage = () => {
         }
     };
 
-    const handleUnlistProduct = async (productId: string) => {
+    const handleProductListing = async (productId: string, listed: boolean) => {
         try {
-            await productsAPI.unlist(productId);
-            toast.success('Product unlisted successfully');
+            await productsAPI.setListing(productId, !listed);
+            toast.success(`Product ${listed ? 'unlisted' : 'listed'} successfully`);
             fetchDashboardData();
         } catch (error) {
             toast.error('Failed to unlist product');
@@ -318,7 +318,7 @@ const DashboardPage = () => {
                                                         <Edit className="h-4 w-4" />
                                                     </Link>
                                                     <button
-                                                        onClick={() => handleUnlistProduct(product._id)}
+                                                        onClick={() => handleProductListing(product._id, product.listed)}
                                                         className="text-yellow-600 hover:text-yellow-900"
                                                     >
                                                         <TrendingUp className="h-4 w-4" />

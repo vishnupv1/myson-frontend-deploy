@@ -1,6 +1,8 @@
 @import "tailwindcss";
 @import "leaflet/dist/leaflet.css";
 
+@plugin "tailwindcss-animate";
+
 body{
     max-width: 1920px;
     margin-inline: auto;

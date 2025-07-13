@@ -84,6 +84,7 @@ export const publicAPI = {
     getCategories: () => api.get('/public/categories'),
     getBrands: () => api.get('/public/brands'),
     getSubcategory: (type: string) => api.get(`/public/subcategories/${type}`),
+    searchProducts: (q: string) => api.get('/public/search', { params: { q } }),
 };
 
 export default api; 

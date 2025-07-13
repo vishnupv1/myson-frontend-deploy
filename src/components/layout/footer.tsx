@@ -1,7 +1,7 @@
-import { Facebook, Youtube, Instagram } from "lucide-react";
+import { Facebook, Youtube, Instagram, LucideArrowUpRight } from "lucide-react";
 
 export const Footer = () => (
-    <footer className="bg-gray-900 text-gray-200 pt-10 pb-5 mt-12 ">
+    <footer className="bg-neutral-900 text-gray-200 pt-10 pb-5 mt-12 ">
         <div className="mx-auto max-w-6xl px-6 flex flex-col md:flex-row justify-between gap-8">
             {/* Logo and About */}
             <div className="flex-1 max-w-md text-center md:text-left">
@@ -40,6 +40,38 @@ export const Footer = () => (
                         <Facebook size={20} />
                         <span className="text-gray-400">MysonGroupofCompanies</span>
                     </a>
+                </div>
+            </div>
+            <div>
+                {/* heading */}
+                <h4 className="mb-2 text-white text-lg">Store Locator</h4>
+
+                {/* responsive map wrapper */}
+                <div className="relative w-full overflow-hidden rounded-md shadow-lg"
+                    /* 16 : 9 aspect ratio – adjust if you want it taller/narrower */
+                    style={{ paddingBottom: "56.25%" }}>
+                    <iframe
+                        title="Myson Planet on Google Maps"
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3928.5396489677364!2d76.2925296!3d10.054793699999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b080de739753667%3A0xe3650d369bc3ba2b!2sMyson%20Planet!5e0!3m2!1sen!2sin!4v1752419483558!5m2!1sen!2sin"
+                        loading="lazy"
+                        allowFullScreen
+                        referrerPolicy="no-referrer-when-downgrade"
+                        /* stretch to fill wrapper */
+                        className="absolute inset-0 h-full w-full stretch border-0"
+                    />
+                </div>
+
+                {/* optional “Open in Google Maps” link */}
+                <div className="text-sm mt-2 flex items-center gap-1 justify-center">
+                    <a
+                        href="https://maps.app.goo.gl/gGuN9UnojZfBmPRp8"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-100 hover:text-blue-300 transition-colors"
+                    >
+                        Open in Google Maps
+                    </a>
+                    <LucideArrowUpRight size={16} />
                 </div>
             </div>
         </div>

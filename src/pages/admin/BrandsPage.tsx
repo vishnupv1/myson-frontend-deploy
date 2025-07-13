@@ -77,13 +77,13 @@ const BrandsPage = () => {
         }
     };
 
-    const handleUnlistBrand = async (id: string) => {
+    const handleBrandListing = async (id: string, listed: boolean) => {
         try {
-            await brandsAPI.unlist(id);
-            toast.success('Brand unlisted successfully');
+            await brandsAPI.setListing(id, !listed);
+            toast.success(`Brand ${listed ? 'unlisted' : 'listed'} successfully`);
             fetchBrands();
         } catch (error) {
-            toast.error('Failed to unlist brand');
+            toast.error(`Failed to ${listed ? 'unlist' : 'list'} brand`);
         }
     };
 
@@ -149,7 +149,7 @@ const BrandsPage = () => {
                             value={newBrandName}
                             onChange={(e) => setNewBrandName(e.target.value)}
                             placeholder="Enter brand name"
-                            className="flex-1 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                            className="flex-1 py-2 ps-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         />
                         <button
                             onClick={handleAddBrand}
@@ -178,7 +178,7 @@ const BrandsPage = () => {
                         type="text"
                         value={searchTerm}
                         onChange={(e) => setSearchTerm(e.target.value)}
-                        className="pl-10 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        className="pl-10 py-2 ps-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                         placeholder="Search brands..."
                     />
                 </div>
@@ -231,7 +231,7 @@ const BrandsPage = () => {
                                                     type="text"
                                                     value={editingName}
                                                     onChange={(e) => setEditingName(e.target.value)}
-                                                    className="border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                    className="py-2 ps-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                                     onKeyPress={(e) => {
                                                         if (e.key === 'Enter') {
                                                             handleUpdateBrand(brand._id);
@@ -282,7 +282,7 @@ const BrandsPage = () => {
                                                         <Edit className="h-4 w-4" />
                                                     </button>
                                                     <button
-                                                        onClick={() => handleUnlistBrand(brand._id)}
+                                                        onClick={() => handleBrandListing(brand._id, brand.listed)}
                                                         className={`${
                                                             brand.listed 
                                                                 ? 'text-yellow-600 hover:text-yellow-900' 

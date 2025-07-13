@@ -22,6 +22,9 @@ const productSchema = z.object({
 
 type ProductFormData = z.infer<typeof productSchema>;
 
+const MIN_IMAGE_SIZE = 512;
+const MAX_IMAGE_SIZE = 512000; // 500KB
+
 const ProductFormPage = () => {
     const { id } = useParams();
     const navigate = useNavigate();
@@ -30,6 +33,7 @@ const ProductFormPage = () => {
     const [brands, setBrands] = useState<any[]>([]);
     const [images, setImages] = useState<File[]>([]);
     const [existingImages, setExistingImages] = useState<string[]>([]);
+    const [initialImages, setInitialImages] = useState<string[]>([]);
     const [isEditing, setIsEditing] = useState(false);
 
     const {
@@ -55,13 +59,16 @@ const ProductFormPage = () => {
         try {
             const response = await productsAPI.getById(id!);
             const product = response.data.product;
+
             setValue('name', product.name);
             setValue('description', product.description);
             setValue('price', product.price);
             setValue('category', product.category._id);
             setValue('brand', product.brand._id);
             setExistingImages(product.images || []);
+            setInitialImages(product.images || []);
         } catch (error) {
+            console.log(error)
             toast.error('Failed to load product');
             navigate('/admin/products');
         }
@@ -85,9 +92,90 @@ const ProductFormPage = () => {
         }
     };
 
+    const handleAddImages = async (files: File[]) => {
+        if (!id) return;
+        const formData = new FormData();
+        files.forEach(file => formData.append('images', file));
+        setIsLoading(true);
+        try {
+            const response = await productsAPI.addImages(id, formData);
+            setExistingImages(response.data.images || []);
+            setImages([]); // Clear new images
+            toast.success('Images added successfully');
+        } catch (error: any) {
+            toast.error(error.response?.data?.message || 'Failed to add images');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const handleDeleteExistingImage = async (imageName: string) => {
+        if (!id) return;
+        if (existingImages.length <= 1) {
+            toast.error('A product must have at least one image');
+            return;
+        }
+        setIsLoading(true);
+        try {
+            const response = await productsAPI.deleteImage(id, imageName);
+            setExistingImages(response.data.images || []);
+            toast.success('Image deleted successfully');
+        } catch (error: any) {
+            toast.error(error.response?.data?.message || 'Failed to delete image');
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
     const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
         const files = Array.from(event.target.files || []);
-        setImages(prev => [...prev, ...files]);
+        let validFiles: File[] = [];
+        let errorShown = false;
+        let pending = files.length;
+        if (pending === 0) return;
+        files.forEach((file) => {
+            if (file.size > MAX_IMAGE_SIZE) {
+                if (!errorShown) {
+                    toast.error('Each image must be less than 500KB for fast loading.');
+                    errorShown = true;
+                }
+                pending--;
+                if (pending === 0 && validFiles.length > 0) {
+                    if (isEditing) handleAddImages(validFiles);
+                    else setImages(prev => [...prev, ...validFiles]);
+                }
+                return;
+            }
+            const img = new window.Image();
+            const url = URL.createObjectURL(file);
+            img.onload = () => {
+                if (
+                    img.width >= MIN_IMAGE_SIZE &&
+                    img.height >= MIN_IMAGE_SIZE &&
+                    img.width === img.height
+                ) {
+                    validFiles.push(file);
+                } else if (!errorShown) {
+                    toast.error('Images must be square and at least 512x512px for fast loading.');
+                    errorShown = true;
+                }
+                URL.revokeObjectURL(url);
+                pending--;
+                if (pending === 0 && validFiles.length > 0) {
+                    if (isEditing) handleAddImages(validFiles);
+                    else setImages(prev => [...prev, ...validFiles]);
+                }
+            };
+            img.onerror = () => {
+                pending--;
+                URL.revokeObjectURL(url);
+                if (!errorShown) {
+                    toast.error('Invalid image file.');
+                    errorShown = true;
+                }
+            };
+            img.src = url;
+        });
     };
 
     const removeImage = (index: number) => {
@@ -99,11 +187,10 @@ const ProductFormPage = () => {
     };
 
     const onSubmit = async (data: ProductFormData) => {
-        if (images.length === 0 && existingImages.length === 0) {
+        if (!isEditing && images.length === 0) {
             toast.error('At least one image is required');
             return;
         }
-
         setIsLoading(true);
         try {
             const formData = new FormData();
@@ -112,19 +199,16 @@ const ProductFormPage = () => {
             formData.append('price', data.price.toString());
             formData.append('category', data.category);
             formData.append('brand', data.brand);
-
-            images.forEach((image) => {
-                formData.append('images', image);
-            });
-
-            if (isEditing) {
-                await productsAPI.update(id!, formData);
-                toast.success('Product updated successfully');
-            } else {
+            if (!isEditing) {
+                images.forEach((image) => {
+                    formData.append('images', image);
+                });
                 await productsAPI.create(formData);
                 toast.success('Product created successfully');
+            } else {
+                await productsAPI.update(id!, formData);
+                toast.success('Product updated successfully');
             }
-
             navigate('/admin/products');
         } catch (error: any) {
             toast.error(error.response?.data?.message || 'Failed to save product');
@@ -167,7 +251,7 @@ const ProductFormPage = () => {
                                 <input
                                     {...register('name')}
                                     type="text"
-                                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    className="mt-1 block w-full py-2 ps-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     placeholder="Enter product name"
                                 />
                                 {errors.name && (
@@ -182,7 +266,7 @@ const ProductFormPage = () => {
                                 <textarea
                                     {...register('description')}
                                     rows={4}
-                                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    className="mt-1 block w-full py-2 ps-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                     placeholder="Enter product description"
                                 />
                                 {errors.description && (
@@ -199,11 +283,11 @@ const ProductFormPage = () => {
                                         <span className="text-gray-500 sm:text-sm">$</span>
                                     </div>
                                     <input
-                                        {...register('price', { valueAsNumber: true })}
+                                        {...register('price', { valueAsNumber: true, min: 1 })}
                                         type="number"
-                                        step="0.01"
+                                        step="1"
                                         min="0"
-                                        className="pl-7 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                        className="pl-7 py-2 ps-2 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                         placeholder="0.00"
                                     />
                                 </div>
@@ -218,7 +302,7 @@ const ProductFormPage = () => {
                                 </label>
                                 <select
                                     {...register('category')}
-                                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    className="mt-1 block w-full py-2 ps-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                 >
                                     <option value="">Select a category</option>
                                     {categories.map((category) => (
@@ -238,7 +322,7 @@ const ProductFormPage = () => {
                                 </label>
                                 <select
                                     {...register('brand')}
-                                    className="mt-1 block w-full border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                    className="mt-1 block w-full py-2 ps-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                                 >
                                     <option value="">Select a brand</option>
                                     {brands.map((brand) => (
@@ -259,22 +343,22 @@ const ProductFormPage = () => {
                                 <label className="block text-sm font-medium text-gray-700 mb-2">
                                     Product Images *
                                 </label>
-                                
+
                                 {/* Existing Images */}
                                 {existingImages.length > 0 && (
                                     <div className="mb-4">
                                         <h4 className="text-sm font-medium text-gray-700 mb-2">Current Images</h4>
                                         <div className="grid grid-cols-2 gap-4">
                                             {existingImages.map((image, index) => (
-                                                <div key={index} className="relative group">
+                                                <div key={index} className="relative group aspect-square max-h-[250px]">
                                                     <img
                                                         src={`http://localhost:5000/public/images/${image}`}
                                                         alt={`Product ${index + 1}`}
-                                                        className="w-full h-32 object-cover rounded-lg"
+                                                        className="w-full h-full object-cover rounded-lg"
                                                     />
                                                     <button
                                                         type="button"
-                                                        onClick={() => removeExistingImage(index)}
+                                                        onClick={() => handleDeleteExistingImage(image)}
                                                         className="absolute top-2 right-2 bg-red-500 text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
                                                     >
                                                         <X className="h-4 w-4" />
@@ -291,11 +375,11 @@ const ProductFormPage = () => {
                                         <h4 className="text-sm font-medium text-gray-700 mb-2">New Images</h4>
                                         <div className="grid grid-cols-2 gap-4">
                                             {images.map((image, index) => (
-                                                <div key={index} className="relative group">
+                                                <div key={index} className="relative group aspect-square max-h-[250px]">
                                                     <img
                                                         src={URL.createObjectURL(image)}
                                                         alt={`New ${index + 1}`}
-                                                        className="w-full h-32 object-cover rounded-lg"
+                                                        className="w-full h-full object-cover rounded-lg"
                                                     />
                                                     <button
                                                         type="button"

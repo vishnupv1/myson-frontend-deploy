@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { Link, useLocation, Outlet } from 'react-router';
-import { useAuth } from '../../contexts/AuthContext';
+import { useAuth } from '../../../contexts/AuthContext';
 import { 
     LayoutDashboard, 
     Package, 
@@ -49,7 +49,7 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
                     </div>
                     <nav className="flex-1 space-y-1 px-2 py-4">
                         {navigation.map((item) => {
-                            const isActive = location.pathname === item.href;
+                            const isActive = location.pathname.endsWith(item.href) || location.pathname.includes(item.href + "/new");
                             return (
                                 <Link
                                     key={item.name}
@@ -91,7 +91,7 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
                     </div>
                     <nav className="flex-1 space-y-1 px-2 py-4">
                         {navigation.map((item) => {
-                            const isActive = location.pathname === item.href;
+                            const isActive = location.pathname.endsWith(item.href) || location.pathname.includes(item.href + "/new");
                             return (
                                 <Link
                                     key={item.name}
@@ -135,7 +135,7 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
                     >
                         <Menu size={24} />
                     </button>
-                    <div className="flex flex-1 gap-x-4 self-stretch lg:gap-x-6">
+                    <div className="flex flex-1 gap-x-4 lg:gap-x-6">
                         <h1 className="text-lg font-semibold text-gray-900">Admin Panel</h1>
                     </div>
                 </div>

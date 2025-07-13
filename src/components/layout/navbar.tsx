@@ -1,6 +1,6 @@
 import { HomeIcon, HeartIcon, UserIcon, SearchIcon } from 'lucide-react';
 
-export const Navbar = ()=> {
+export const Navbar = () => {
     return (
         <header className="bg-white shadow-sm border-b border-gray-200 px-4`">
             <div className="container mx-auto flex items-center justify-between px-4 py-3">
@@ -8,7 +8,7 @@ export const Navbar = ()=> {
                     <img src="/brand.logo.png" alt="Myson" className="sm:h-16 w-auto" />
                 </a>
 
-                <div className="flex-1 mx-6 max-w-lg">
+                <div className="flex-1 mx-6 max-w-sm">
                     <div className="relative">
                         <input
                             type="text"
@@ -19,14 +19,6 @@ export const Navbar = ()=> {
                     </div>
                 </div>
 
-                <nav className="flex space-x-6 text-red-400">
-                    <a href="/wishlist" className="hover:text-gray-900">
-                        <HeartIcon className="w-6 h-6" />
-                    </a>
-                    <a href="/account" className="hover:text-gray-900">
-                        <UserIcon className="w-6 h-6" />
-                    </a>
-                </nav>
             </div>
         </header>
     );

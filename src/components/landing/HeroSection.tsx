@@ -41,10 +41,12 @@ export const HeroSection = () => {
                                 Explore Products
                                 <ArrowRight className="w-5 h-5" />
                             </button>
-                            <button className="border-2 border-white text-white hover:border-red-400 hover:text-red-400 font-semibold py-3 px-8 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2">
-                                <Play className="w-5 h-5" />
-                                Watch Video
-                            </button>
+                            <a href="https://youtu.be/16e4w9p-lE0?si=rU7uwW7jt2wid_jW" target="_blank" rel="noopener noreferrer">
+                                <button className="border-2 border-white text-white hover:border-red-400 hover:text-red-400 font-semibold py-3 px-8 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2">
+                                    <Play className="w-5 h-5" />
+                                    Watch Video
+                                </button>
+                            </a>
                         </div>
                         {/* Trust Indicators */}
                         <div className="mt-12 flex flex-wrap justify-center lg:justify-start gap-8 text-sm text-gray-300">

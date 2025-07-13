@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosError } from 'axios';
 
 const API_BASE_URL = 'http://localhost:5000/api/v1';
 
@@ -21,10 +21,13 @@ api.interceptors.request.use((config) => {
 // Response interceptor to handle auth errors
 api.interceptors.response.use(
     (response) => response,
-    (error) => {
+    (error:AxiosError) => {
         if (error.response?.status === 401) {
             localStorage.removeItem('adminToken');
-            window.location.href = '/admin/login';
+
+            if (error.config?.url !== '/login') {
+                window.location.href = '/admin/login';
+            }
         }
         return Promise.reject(error);
     }
@@ -44,17 +47,16 @@ export const productsAPI = {
         headers: { 'Content-Type': 'multipart/form-data' }
     }),
     update: (id: string, data: any) => api.put(`/products/${id}`, data),
-    unlist: (id: string) => api.patch(`/products/${id}/unlist`),
+    setListing: (id: string, listed: boolean) => api.patch(`/products/${id}/listing`, { listed }),
     delete: (id: string) => api.delete(`/products/${id}`),
     addImages: (id: string, data: FormData) => api.post(`/products/${id}/images`, data, {
         headers: { 'Content-Type': 'multipart/form-data' }
     }),
+    deleteImage: (id: string, imageName: string) => api.delete(`/products/${id}/images/${imageName}`),
     updateImage: (id: string, imageIndex: number, data: FormData) => 
         api.put(`/products/${id}/images/${imageIndex}`, data, {
             headers: { 'Content-Type': 'multipart/form-data' }
         }),
-    deleteImage: (id: string, imageIndex: number) => 
-        api.delete(`/products/${id}/images/${imageIndex}`),
 };
 
 // Categories API
@@ -71,7 +73,7 @@ export const brandsAPI = {
     getAll: (params?: any) => api.get('/brands', { params }),
     create: (data: { name: string }) => api.post('/brands', data),
     update: (id: string, data: { name: string }) => api.put(`/brands/${id}`, data),
-    unlist: (id: string) => api.patch(`/brands/${id}/unlist`),
+    setListing: (id: string, listed: boolean) => api.patch(`/brands/${id}/listing`, { listed }),
     delete: (id: string) => api.delete(`/brands/${id}`),
 };
 

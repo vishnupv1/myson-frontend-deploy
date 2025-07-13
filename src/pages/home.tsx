@@ -83,11 +83,11 @@ export const Home = () => {
         <main>
             <HeroSection />
             <VideoSection/>
-            <BrandsMarquee />
             <CategoriesSection />
             <FeaturedProductsSection products={featuredProducts} heading="Best Selling" icon={Zap} />
             <FeaturedProductsSection products={newArrivals} heading="New Arrivals" icon={Sparkles} />
             <BannerSection />
+            <BrandsMarquee />
             <TestimonialsSection />
         </main>
     );

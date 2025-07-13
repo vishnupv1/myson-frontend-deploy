@@ -5,7 +5,7 @@ import { Navbar } from "../components/layout/navbar";
 import { Footer } from "../components/layout/footer";
 import Products from "../pages/product";
 import ProductDetail from "../pages/productDetail";
-import AdminLayout from "../components/admin/AdminLayout";
+import AdminLayout from "../components/layout/admin/AdminLayout";
 import LoginPage from "../pages/admin/LoginPage";
 import DashboardPage from "../pages/admin/DashboardPage";
 import ProductsPage from "../pages/admin/ProductsPage";

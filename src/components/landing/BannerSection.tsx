@@ -6,16 +6,24 @@ export const BannerSection = () => (
                 <p className="text-lg text-gray-600">Check out our latest deals and exclusive product launches!</p>
             </div>
             <div className="flex flex-col md:flex-row gap-8">
-                <img
-                    src="https://picsum.photos/seed/200/600/300"
-                    alt="Banner 1"
-                    className="rounded-xl shadow-lg w-full md:w-1/2 object-cover"
-                />
-                <img
-                    src="https://picsum.photos/seed/201/600/300"
-                    alt="Banner 2"
-                    className="rounded-xl shadow-lg w-full md:w-1/2 object-cover"
-                />
+                <div className="flex-1 min-w-0">
+                    <div className="relative w-full aspect-[2/1]">
+                        <img
+                            src="https://picsum.photos/seed/200/600/300"
+                            alt="Banner 1"
+                            className="absolute inset-0 w-full h-full object-cover rounded-xl shadow-2xl"
+                        />
+                    </div>
+                </div>
+                <div className="flex-1 min-w-0">
+                    <div className="relative w-full aspect-[2/1]">
+                        <img
+                            src="https://picsum.photos/seed/201/600/300"
+                            alt="Banner 2"
+                            className="absolute inset-0 w-full h-full object-cover rounded-xl shadow-2xl"
+                        />
+                    </div>
+                </div>
             </div>
         </div>
     </section>

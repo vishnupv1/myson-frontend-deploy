@@ -6,9 +6,9 @@ export const Footer = () => (
             {/* Logo and About */}
             <div className="flex-1 max-w-md text-center md:text-left">
                 <img
-                    src="/brand.logo.png"
+                    src="/brand.icon.png"
                     alt="Company Logo"
-                    className="mb-4 w-40 mx-auto md:mx-0 rounded-xl"
+                    className="mb-4 w-16 mx-auto md:mx-0 rounded"
                 />
                 <p className="text-sm text-gray-400">
                     Since our establishment in 2018, MYSON has swiftly risen as India's leading hub for pet parents. With a wide array of furniture and kitchenwares, we fulfill all your kitchen requirements with unparalleled quality and attention. With a presence in 2 physical retail outlets spanning Kerala, we're continually expanding our reach to serve you better.

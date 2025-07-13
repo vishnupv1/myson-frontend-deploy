@@ -26,7 +26,7 @@ export const ProductsGridSection = ({ products }) => {
                 </aside>
                 {/* Product Grid */}
                 <main className="flex-1">
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-4 sm:gap-8">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                         {products.map(({ id, name, image }) => (
                             <Card key={id} image={image} onClick={()=>navigate("/products/1")} className="cursor-pointer">
                                 <CardHeader>{name}</CardHeader>

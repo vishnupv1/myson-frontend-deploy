@@ -14,10 +14,12 @@ import CategoriesPage from "../pages/admin/CategoriesPage";
 import BrandsPage from "../pages/admin/BrandsPage";
 import { useAuth } from "../contexts/AuthContext";
 import { Toaster } from "react-hot-toast";
+import { ScrollToTop } from "../util/scrollToTop";
 
 const Layout = () => (
     <div className="h-dvh max-w-[1920px]">
         <Navbar />
+        <ScrollToTop/>
         <Outlet />
         <Footer />
     </div>

@@ -1,6 +1,6 @@
 import axios, { AxiosError } from 'axios';
 
-const API_BASE_URL = 'http://localhost:5000/api/v1';
+const API_BASE_URL = import.meta.env.VITE_API_URL + '/api/v1';
 
 const api = axios.create({
     baseURL: API_BASE_URL,
@@ -21,7 +21,7 @@ api.interceptors.request.use((config) => {
 // Response interceptor to handle auth errors
 api.interceptors.response.use(
     (response) => response,
-    (error:AxiosError) => {
+    (error: AxiosError) => {
         if (error.response?.status === 401) {
             localStorage.removeItem('adminToken');
 

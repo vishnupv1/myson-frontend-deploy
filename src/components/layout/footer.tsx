@@ -1,7 +1,7 @@
 import { Facebook, Youtube, Instagram, LucideArrowUpRight } from "lucide-react";
 
 export const Footer = () => (
-    <footer className="bg-neutral-900 text-gray-200 pt-10 pb-5 mt-12 ">
+    <footer className="bg-neutral-900 text-gray-200 pt-10 pb-5` ">
         <div className="mx-auto max-w-6xl px-6 flex flex-col md:flex-row justify-between gap-8">
             {/* Logo and About */}
             <div className="flex-1 max-w-md text-center md:text-left">

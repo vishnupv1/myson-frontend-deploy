@@ -62,7 +62,7 @@ export const SearchPalette = () => {
 
     return (
         <>
-            <button onClick={openPalette} className='p-1'>
+            <button onClick={openPalette} className='p-1 float-end'>
                 <SearchIcon />
             </button>
 

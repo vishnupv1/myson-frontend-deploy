@@ -16,7 +16,7 @@ export const HeroSection = () => {
                     playsInline
                     style={{ minHeight: '100vh' }}
                 >
-                    <source src="/hero.mp4" type="video/mp4" />
+                    <source src="/hero.webm" type="video/webm" />
                     Your browser does not support the video tag.
                 </video>
                 {/* Overlay for better text readability */}

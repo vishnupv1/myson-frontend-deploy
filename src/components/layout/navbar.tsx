@@ -20,8 +20,8 @@ export const Navbar = () => {
 
     return (
         <header className="bg-white shadow-sm border-b border-gray-200 md:px-6">
-            <div className="container mx-auto flex items-center justify-between px-4 py-3">
-                <a href="/" className="flex items-center">
+            <div className="container mx-auto flex items-center justify-between px-2 lg:px-4 py-3">
+                <a href="/" className="flex items-center md:min-w-52">
                     <img
                         src="/brand.logo.png"
                         alt="Myson"
@@ -40,7 +40,7 @@ export const Navbar = () => {
                 </nav>
 
                 {/* Desktop Search */}
-                <div className='hidden md:block text-red-400'>
+                <div className='hidden md:block text-red-400 md:min-w-52'>
                     <SearchPalette />
                 </div>
 

@@ -15,6 +15,8 @@ import BrandsPage from "../pages/admin/BrandsPage";
 import { useAuth } from "../contexts/AuthContext";
 import { Toaster } from "react-hot-toast";
 import { ScrollToTop } from "../util/scrollToTop";
+import { About } from "../pages/about";
+import NotFound from "../pages/NotFound";
 
 const Layout = () => (
     <div className="h-dvh max-w-[1920px]">
@@ -59,6 +61,14 @@ export const AppRouter = createBrowserRouter([
             {
                 path: "products/:id",
                 element: <ProductDetail />
+            },
+            {
+                path: "about",
+                element: <About />
+            },
+            {
+                path: "*",
+                element: <NotFound />
             }
         ],
     },

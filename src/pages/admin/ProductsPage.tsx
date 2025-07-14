@@ -118,7 +118,15 @@ const ProductsPage = () => {
         }
     };
 
+    // Count best sellers and trending
+    const bestSellerCount = products.filter(p => p.bestSeller).length;
+    const trendingCount = products.filter(p => p.trending).length;
+
     const handleBestSellerToggle = async (productId: string, bestSeller: boolean) => {
+        if (!bestSeller && bestSellerCount >= 4) {
+            toast.error('Only 4 products can be marked as Best Seller.');
+            return;
+        }
         try {
             await productsAPI.setBestSeller(productId, !bestSeller);
             toast.success(`Product ${!bestSeller ? 'marked as best-seller' : 'removed from best-sellers'}`);
@@ -128,6 +136,10 @@ const ProductsPage = () => {
         }
     };
     const handleTrendingToggle = async (productId: string, trending: boolean) => {
+        if (!trending && trendingCount >= 4) {
+            toast.error('Only 4 products can be marked as Trending.');
+            return;
+        }
         try {
             await productsAPI.setTrending(productId, !trending);
             toast.success(`Product ${!trending ? 'marked as trending' : 'removed from trending'}`);
@@ -354,22 +366,32 @@ const ProductsPage = () => {
                                             </span>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                                                product.bestSeller
-                                                    ? 'bg-yellow-100 text-yellow-800'
-                                                    : 'bg-gray-100 text-gray-400'
-                                            }`}>
-                                                {product.bestSeller ? 'Yes' : 'No'}
-                                            </span>
+                                            <label className="inline-flex items-center cursor-pointer">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={!!product.bestSeller}
+                                                    onChange={() => handleBestSellerToggle(product._id, !!product.bestSeller)}
+                                                    className="sr-only peer"
+                                                    disabled={!product.bestSeller && bestSellerCount >= 4}
+                                                />
+                                                <div className="w-10 h-5 bg-gray-200 rounded-full peer peer-checked:bg-yellow-400 transition relative">
+                                                    <div className={`absolute left-1 top-1 w-3 h-3 rounded-full bg-white shadow transition-transform duration-200 ${product.bestSeller ? 'translate-x-5 bg-yellow-500' : ''}`}></div>
+                                                </div>
+                                            </label>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap">
-                                            <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
-                                                product.trending
-                                                    ? 'bg-blue-100 text-blue-800'
-                                                    : 'bg-gray-100 text-gray-400'
-                                            }`}>
-                                                {product.trending ? 'Yes' : 'No'}
-                                            </span>
+                                            <label className="inline-flex items-center cursor-pointer">
+                                                <input
+                                                    type="checkbox"
+                                                    checked={!!product.trending}
+                                                    onChange={() => handleTrendingToggle(product._id, !!product.trending)}
+                                                    className="sr-only peer"
+                                                    disabled={!product.trending && trendingCount >= 4}
+                                                />
+                                                <div className="w-10 h-5 bg-gray-200 rounded-full peer peer-checked:bg-blue-400 transition relative">
+                                                    <div className={`absolute left-1 top-1 w-3 h-3 rounded-full bg-white shadow transition-transform duration-200 ${product.trending ? 'translate-x-5 bg-blue-500' : ''}`}></div>
+                                                </div>
+                                            </label>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                                             <div className="flex space-x-2">
@@ -401,20 +423,6 @@ const ProductsPage = () => {
                                                     ) : (
                                                         <TrendingUp className="h-4 w-4" />
                                                     )}
-                                                </button>
-                                                <button
-                                                    onClick={() => handleBestSellerToggle(product._id, !!product.bestSeller)}
-                                                    className={`${product.bestSeller ? 'text-yellow-600 hover:text-yellow-900' : 'text-gray-400 hover:text-yellow-600'}`}
-                                                    title={product.bestSeller ? 'Remove from Best Sellers' : 'Mark as Best Seller'}
-                                                >
-                                                    <span role="img" aria-label="Best Seller">★</span>
-                                                </button>
-                                                <button
-                                                    onClick={() => handleTrendingToggle(product._id, !!product.trending)}
-                                                    className={`${product.trending ? 'text-blue-600 hover:text-blue-900' : 'text-gray-400 hover:text-blue-600'}`}
-                                                    title={product.trending ? 'Remove from Trending' : 'Mark as Trending'}
-                                                >
-                                                    <span role="img" aria-label="Trending">🔥</span>
                                                 </button>
                                                 <button
                                                     onClick={() => handleDeleteProduct(product._id)}

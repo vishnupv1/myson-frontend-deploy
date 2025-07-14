@@ -25,6 +25,8 @@ interface Product {
     brand: { _id: string; name: string };
     listed: boolean;
     createdAt: string;
+    bestSeller?: boolean;
+    trending?: boolean;
 }
 
 interface Category {
@@ -47,6 +49,8 @@ const ProductsPage = () => {
         category: '',
         brand: '',
         listed: '',
+        bestSeller: '',
+        trending: '',
         page: 1,
         limit: 10,
     });
@@ -114,6 +118,25 @@ const ProductsPage = () => {
         }
     };
 
+    const handleBestSellerToggle = async (productId: string, bestSeller: boolean) => {
+        try {
+            await productsAPI.setBestSeller(productId, !bestSeller);
+            toast.success(`Product ${!bestSeller ? 'marked as best-seller' : 'removed from best-sellers'}`);
+            fetchProducts();
+        } catch (error) {
+            toast.error('Failed to update best-seller status');
+        }
+    };
+    const handleTrendingToggle = async (productId: string, trending: boolean) => {
+        try {
+            await productsAPI.setTrending(productId, !trending);
+            toast.success(`Product ${!trending ? 'marked as trending' : 'removed from trending'}`);
+            fetchProducts();
+        } catch (error) {
+            toast.error('Failed to update trending status');
+        }
+    };
+
     const handleFilterChange = (key: string, value: string) => {
         setFilters(prev => ({
             ...prev,
@@ -146,7 +169,7 @@ const ProductsPage = () => {
 
             {/* Filters */}
             <div className="bg-white shadow rounded-lg p-6">
-                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-6">
                     <div>
                         <label className="block text-sm font-medium text-gray-700 mb-1">
                             Search
@@ -213,6 +236,30 @@ const ProductsPage = () => {
                             <option value="false">Unlisted</option>
                         </select>
                     </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Best Seller</label>
+                        <select
+                            value={filters.bestSeller}
+                            onChange={(e) => handleFilterChange('bestSeller', e.target.value)}
+                            className="block w-full py-2 ps-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        >
+                            <option value="">All</option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label className="block text-sm font-medium text-gray-700 mb-1">Trending</label>
+                        <select
+                            value={filters.trending}
+                            onChange={(e) => handleFilterChange('trending', e.target.value)}
+                            className="block w-full py-2 ps-2 border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                        >
+                            <option value="">All</option>
+                            <option value="true">Yes</option>
+                            <option value="false">No</option>
+                        </select>
+                    </div>
                 </div>
             </div>
 
@@ -259,6 +306,8 @@ const ProductsPage = () => {
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Status
                                     </th>
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Best Seller</th>
+                                    <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Trending</th>
                                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                         Actions
                                     </th>
@@ -281,7 +330,7 @@ const ProductsPage = () => {
                                                         {product.name}
                                                     </div>
                                                     <div className="text-sm text-gray-500">
-                                                        {product.description.substring(0, 50)}...
+                                                        {product.description.substring(0, 10)}...
                                                     </div>
                                                 </div>
                                             </div>
@@ -302,6 +351,24 @@ const ProductsPage = () => {
                                                     : 'bg-red-100 text-red-800'
                                             }`}>
                                                 {product.listed ? 'Listed' : 'Unlisted'}
+                                            </span>
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                                                product.bestSeller
+                                                    ? 'bg-yellow-100 text-yellow-800'
+                                                    : 'bg-gray-100 text-gray-400'
+                                            }`}>
+                                                {product.bestSeller ? 'Yes' : 'No'}
+                                            </span>
+                                        </td>
+                                        <td className="px-6 py-4 whitespace-nowrap">
+                                            <span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${
+                                                product.trending
+                                                    ? 'bg-blue-100 text-blue-800'
+                                                    : 'bg-gray-100 text-gray-400'
+                                            }`}>
+                                                {product.trending ? 'Yes' : 'No'}
                                             </span>
                                         </td>
                                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
@@ -334,6 +401,20 @@ const ProductsPage = () => {
                                                     ) : (
                                                         <TrendingUp className="h-4 w-4" />
                                                     )}
+                                                </button>
+                                                <button
+                                                    onClick={() => handleBestSellerToggle(product._id, !!product.bestSeller)}
+                                                    className={`${product.bestSeller ? 'text-yellow-600 hover:text-yellow-900' : 'text-gray-400 hover:text-yellow-600'}`}
+                                                    title={product.bestSeller ? 'Remove from Best Sellers' : 'Mark as Best Seller'}
+                                                >
+                                                    <span role="img" aria-label="Best Seller">★</span>
+                                                </button>
+                                                <button
+                                                    onClick={() => handleTrendingToggle(product._id, !!product.trending)}
+                                                    className={`${product.trending ? 'text-blue-600 hover:text-blue-900' : 'text-gray-400 hover:text-blue-600'}`}
+                                                    title={product.trending ? 'Remove from Trending' : 'Mark as Trending'}
+                                                >
+                                                    <span role="img" aria-label="Trending">🔥</span>
                                                 </button>
                                                 <button
                                                     onClick={() => handleDeleteProduct(product._id)}

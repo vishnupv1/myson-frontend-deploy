@@ -1,40 +1,187 @@
-import { useNavigate } from "react-router";
+import { useState, useEffect } from "react";
 import { Card, CardHeader } from "../ui/card";
+import { publicAPI } from "../../services/api";
+import { buildImageUrl } from "../../util/buildImageUrl";
 
-export const ProductsGridSection = ({ products }) => {
-    const navigate = useNavigate();
+interface Product {
+    _id: string;
+    name: string;
+    images: string[];
+}
+interface Category {
+    _id: string;
+    name: string;
+}
+interface Brand {
+    _id: string;
+    name: string;
+}
+interface Filters {
+    search?: string;
+    category?: string;
+    brand?: string;
+    page: number;
+    limit: number;
+}
+
+export const ProductsGridSection = () => {
+    const [products, setProducts] = useState<Product[]>([]);
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [brands, setBrands] = useState<Brand[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+    const [filters, setFilters] = useState<Filters>({
+        search: "",
+        category: "",
+        brand: "",
+        page: 1,
+        limit: 9,
+    });
+    const [totalPages, setTotalPages] = useState(1);
+
+    useEffect(() => {
+        fetchCategories();
+        fetchBrands();
+    }, []);
+
+    useEffect(() => {
+        fetchProducts();
+        // eslint-disable-next-line
+    }, [filters]);
+
+    const fetchProducts = async () => {
+        setIsLoading(true);
+        try {
+            const params: any = {
+                page: filters.page,
+                limit: filters.limit,
+            };
+            if (filters.category) params.category = filters.category;
+            if (filters.brand) params.brand = filters.brand;
+            if (filters.search) params.search = filters.search;
+            const res = await publicAPI.getProducts(params);
+            setProducts(res.data.products || []);
+            setTotalPages(Math.ceil((res.data.total || 0) / filters.limit));
+        } catch {
+            setProducts([]);
+            setTotalPages(1);
+        } finally {
+            setIsLoading(false);
+        }
+    };
+
+    const fetchCategories = async () => {
+        try {
+            const res = await publicAPI.getCategories();
+            setCategories(res.data || []);
+        } catch {
+            setCategories([]);
+        }
+    };
+
+    const fetchBrands = async () => {
+        try {
+            const res = await publicAPI.getBrands();
+            setBrands(res.data || []);
+        } catch {
+            setBrands([]);
+        }
+    };
+
+    const handleFilterChange = (key: keyof Filters, value: string) => {
+        setFilters(prev => ({
+            ...prev,
+            [key]: value,
+            page: 1, // Reset to first page on filter change
+        }));
+    };
+
+    const handlePageChange = (page: number) => {
+        setFilters(prev => ({ ...prev, page }));
+    };
 
     return (
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-            <div className="flex gap-8">
-                {/* Filter Sidebar - Currently Unused */}
-                <aside className="w-64 hidden md:block p-6 bg-white rounded-xl shadow h-fit sticky top-24">
-                    <h2 className="text-xl font-semibold mb-6">Filters</h2>
-                    <div className="mb-4">
-                        <label className="block mb-2 font-medium">Category</label>
-                        <select className="w-full p-2 border rounded">
-                            <option>All</option>
-                            <option>Kitchen</option>
-                            <option>Home</option>
-                        </select>
+            {/* Filters Top Bar */}
+            <div className="flex flex-col md:flex-row md:items-center md:justify-end gap-4 mb-8">
+                <input
+                    type="text"
+                    value={filters.search}
+                    onChange={e => handleFilterChange("search", e.target.value)}
+                    className="border rounded px-3 py-2 w-full md:w-56"
+                    placeholder="Search products..."
+                />
+                <select
+                    value={filters.category}
+                    onChange={e => handleFilterChange("category", e.target.value)}
+                    className="border rounded px-3 py-2 w-full md:w-44"
+                >
+                    <option value="">All Categories</option>
+                    {categories.map(cat => (
+                        <option key={cat._id} value={cat._id}>{cat.name}</option>
+                    ))}
+                </select>
+                <select
+                    value={filters.brand}
+                    onChange={e => handleFilterChange("brand", e.target.value)}
+                    className="border rounded px-3 py-2 w-full md:w-44"
+                >
+                    <option value="">All Brands</option>
+                    {brands.map(brand => (
+                        <option key={brand._id} value={brand._id}>{brand.name}</option>
+                    ))}
+                </select>
+            </div>
+            {/* Product Grid */}
+            <main className="flex-1">
+                {isLoading ? (
+                    <div className="flex items-center justify-center h-64">
+                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600"></div>
                     </div>
-                    <div className="mb-4">
-                        <label className="block mb-2 font-medium">Price Range</label>
-                        <input type="range" min="0" max="100000" className="w-full" />
-                    </div>
-                    <button className="mt-6 w-full bg-red-600 text-white py-2 rounded hover:bg-red-700 transition">Apply</button>
-                </aside>
-                {/* Product Grid */}
-                <main className="flex-1">
+                ) : products.length === 0 ? (
+                    <div className="text-center py-12 text-gray-500">No products found.</div>
+                ) : (
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
-                        {products.map(({ id, name, image }) => (
-                            <Card key={id} image={image} onClick={()=>navigate("/products/1")} className="cursor-pointer">
-                                <CardHeader>{name}</CardHeader>
+                        {products.map((product) => (
+                            <Card
+                                key={product._id}
+                                image={buildImageUrl(product.images?.[0])}
+                                className="cursor-pointer"
+                                onClick={() => window.location.href = `/products/${product._id}`}
+                            >
+                                <CardHeader>{product.name}</CardHeader>
                             </Card>
                         ))}
                     </div>
-                </main>
-            </div>
+                )}
+            </main>
+            {/* Pagination */}
+            {totalPages > 1 && (
+                <div className="mt-8 flex items-center justify-center gap-2">
+                    <button
+                        onClick={() => handlePageChange(filters.page - 1)}
+                        disabled={filters.page === 1}
+                        className="px-3 py-1 rounded border bg-white text-gray-700 hover:bg-gray-100 disabled:opacity-50"
+                    >
+                        Previous
+                    </button>
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+                        <button
+                            key={page}
+                            onClick={() => handlePageChange(page)}
+                            className={`px-3 py-1 rounded border ${page === filters.page ? 'bg-red-500 text-white' : 'bg-white text-gray-700 hover:bg-gray-100'}`}
+                        >
+                            {page}
+                        </button>
+                    ))}
+                    <button
+                        onClick={() => handlePageChange(filters.page + 1)}
+                        disabled={filters.page === totalPages}
+                        className="px-3 py-1 rounded border bg-white text-gray-700 hover:bg-gray-100 disabled:opacity-50"
+                    >
+                        Next
+                    </button>
+                </div>
+            )}
         </div>
     );
 }; 

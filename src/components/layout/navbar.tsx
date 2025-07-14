@@ -9,12 +9,12 @@ export const Navbar = () => {
                     <img src="/brand.logo.png" alt="Myson" className="sm:h-16 w-auto" />
                 </a>
 
-                <nav className="flex items-center space-x-6 text-red-400">
-                    <a href="/" className="hover:text-gray-900 flex items-center gap-1">
+                <nav className="flex items-center space-x-6 text-gray-800">
+                    <a href="/" className="hover:text-red-500 flex items-center gap-1">
                         <span className="">Home</span>
                     </a>
-                    <a href="/products" className="hover:text-gray-900">Products</a>
-                    <a href="/about" className="hover:text-gray-900 ">About</a>                    
+                    <a href="/products" className="hover:text-red-500">Products</a>
+                    <a href="/about" className="hover:text-red-500 ">About</a>                    
                 </nav>
 
                 <div className='text-red-400'>

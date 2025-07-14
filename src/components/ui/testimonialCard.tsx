@@ -8,7 +8,7 @@ export interface TestimonialCardProps {
 }
 
 export const TestimonialCard = ({ name, text, avatarUrl, company }: TestimonialCardProps) => (
-    <Card className="flex flex-col items-center text-center p-2 mx-2 my-4 hover:shadow-md">
+    <Card className="flex flex-col items-center text-center p-2 mx-2 my-4 hover:shadow-md" disableImageFallback={true}>
         {avatarUrl && (
             <img
                 src={avatarUrl}

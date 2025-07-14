@@ -48,18 +48,16 @@ export const productsAPI = {
     }),
     update: (id: string, data: any) => api.put(`/products/${id}`, data),
     setListing: (id: string, listed: boolean) => api.patch(`/products/${id}/listing`, { listed }),
+    setBestSeller: (id: string, bestSeller: boolean) => api.patch(`/products/${id}/best-seller`, { bestSeller }),
+    setTrending: (id: string, trending: boolean) => api.patch(`/products/${id}/trending`, { trending }),
     delete: (id: string) => api.delete(`/products/${id}`),
     addImages: (id: string, data: FormData) => api.post(`/products/${id}/images`, data, {
         headers: { 'Content-Type': 'multipart/form-data' }
     }),
     deleteImage: (id: string, imageName: string) => api.delete(`/products/${id}/images/${imageName}`),
-    updateImage: (id: string, imageIndex: number, data: FormData) => 
-        api.put(`/products/${id}/images/${imageIndex}`, data, {
-            headers: { 'Content-Type': 'multipart/form-data' }
-        }),
 };
 
-// Categories API
+// Categories API (admin)
 export const categoriesAPI = {
     getAll: (params?: any) => api.get('/categories', { params }),
     create: (data: { name: string }) => api.post('/categories', data),
@@ -68,7 +66,7 @@ export const categoriesAPI = {
     delete: (id: string) => api.delete(`/categories/${id}`),
 };
 
-// Brands API
+// Brands API (admin)
 export const brandsAPI = {
     getAll: (params?: any) => api.get('/brands', { params }),
     create: (data: { name: string }) => api.post('/brands', data),
@@ -77,14 +75,20 @@ export const brandsAPI = {
     delete: (id: string) => api.delete(`/brands/${id}`),
 };
 
-// Public API (for reference)
-export const publicAPI = {
-    getProducts: (params?: any) => api.get('/public/products', { params }),
-    getProduct: (id: string) => api.get(`/public/products/${id}`),
-    getCategories: () => api.get('/public/categories'),
-    getBrands: () => api.get('/public/brands'),
-    getSubcategory: (type: string) => api.get(`/public/subcategories/${type}`),
-    searchProducts: (q: string) => api.get('/public/search', { params: { q } }),
-};
+// Public API instance (no auth, no interceptors)
+const publicApi = axios.create({
+    baseURL: API_BASE_URL,
+    headers: {
+        'Content-Type': 'application/json',
+    },
+});
 
-export default api; 
+export const publicAPI = {
+    getProducts: (params?: any) => publicApi.get('/public/products', { params }),
+    getProduct: (id: string) => publicApi.get(`/public/products/${id}`),
+    getCategories: () => publicApi.get('/public/categories'),
+    getBrands: () => publicApi.get('/public/brands'),
+    searchProducts: (q: string) => publicApi.get('/public/search', { params: { q } }),
+    getFeaturedProducts: (type: string) => publicApi.get('/public/featured', { params: { type } }),
+    // getFeaturedProducts: (type: string) => publicApi.get(`/public/products/featured`, { params: { type } }),
+};

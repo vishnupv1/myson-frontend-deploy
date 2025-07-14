@@ -84,8 +84,8 @@ export const Home = () => {
             <HeroSection />
             <VideoSection/>
             <CategoriesSection />
-            <FeaturedProductsSection products={featuredProducts} heading="Best Selling" icon={Zap} />
-            <FeaturedProductsSection products={newArrivals} heading="New Arrivals" icon={Sparkles} />
+            <FeaturedProductsSection heading="Best Sellers" icon={Zap} type="best-sellers" />
+            <FeaturedProductsSection heading="New Arrivals" icon={Sparkles} type="trending"/>
             <BannerSection />
             <BrandsMarquee />
             <TestimonialsSection />

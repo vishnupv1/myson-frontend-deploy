@@ -22,7 +22,7 @@ const productSchema = z.object({
 
 type ProductFormData = z.infer<typeof productSchema>;
 
-const MIN_IMAGE_SIZE = 512;
+const MIN_IMAGE_SIZE = 300;
 const MAX_IMAGE_SIZE = 512000; // 500KB
 
 const ProductFormPage = () => {
@@ -103,6 +103,7 @@ const ProductFormPage = () => {
             setImages([]); // Clear new images
             toast.success('Images added successfully');
         } catch (error: any) {
+            console.log(error)
             toast.error(error.response?.data?.message || 'Failed to add images');
         } finally {
             setIsLoading(false);

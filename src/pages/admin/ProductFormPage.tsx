@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { productsAPI, categoriesAPI, brandsAPI } from '../../services/api';
 import toast from 'react-hot-toast';
+import { buildImageUrl } from '../../util/buildImageUrl';
 
 const productSchema = z.object({
     name: z.string().min(1, 'Product name is required'),
@@ -353,7 +354,7 @@ const ProductFormPage = () => {
                                             {existingImages.map((image, index) => (
                                                 <div key={index} className="relative group aspect-square max-h-[250px]">
                                                     <img
-                                                        src={`http://localhost:5000/public/images/${image}`}
+                                                        src={buildImageUrl(image)}
                                                         alt={`Product ${index + 1}`}
                                                         className="w-full h-full object-cover rounded-lg"
                                                     />

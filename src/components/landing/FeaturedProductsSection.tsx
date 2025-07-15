@@ -37,7 +37,7 @@ export const FeaturedProductsSection = ({ heading, icon: Icon, type }) => {
                 ) : (
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {products.slice(0, 4).map((product) => (
-                            <Card key={product._id} image={buildImageUrl(product.images?.[0])} onClick={() => navigate(`/products/${product._id}`)} className="cursor-pointer">
+                            <Card key={product._id} image={product.images?.[0]} onClick={() => navigate(`/products/${product._id}`)} className="cursor-pointer">
                                 <CardHeader>{product.name}</CardHeader>
                             </Card>
                         ))}

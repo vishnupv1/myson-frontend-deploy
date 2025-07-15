@@ -12,6 +12,7 @@ import {
 } from 'lucide-react';
 import { productsAPI, categoriesAPI, brandsAPI } from '../../services/api';
 import toast from 'react-hot-toast';
+import { buildImageUrl } from '../../util/buildImageUrl';
 
 interface DashboardStats {
     totalProducts: number;
@@ -280,7 +281,7 @@ const DashboardPage = () => {
                                                     <div className="flex-shrink-0 h-10 w-10">
                                                         <img
                                                             className="h-10 w-10 rounded-lg object-cover"
-                                                            src={`http://localhost:5000/public/images/${product.images[0]}`}
+                                                            src={buildImageUrl(product.images?.[0])}
                                                             alt={product.name}
                                                         />
                                                     </div>

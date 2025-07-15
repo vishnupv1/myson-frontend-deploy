@@ -1,4 +1,4 @@
-import { Facebook, Youtube, Instagram, LucideArrowUpRight } from "lucide-react";
+import { Facebook, Youtube, Instagram, LucideArrowUpRight, LucidePhone } from "lucide-react";
 
 export const Footer = () => (
     <footer className="bg-neutral-900 text-gray-200 pt-10 pb-5` ">
@@ -19,9 +19,9 @@ export const Footer = () => (
             <nav className="flex flex-col gap-2 text-sm items-start text-gray-400">
                 <h3 className="text-lg text-white">Links</h3>
                 <a href="#brands" className="hover:text-white transition">Brands</a>
-                <a href="#products" className="hover:text-white transition">Products</a>
+                <a href="#categories" className="hover:text-white transition">Categories</a>
+                <a href="/products" className="hover:text-white transition">Products</a>
                 <a href="#testimonials" className="hover:text-white transition">Testimonials</a>
-                <a href="#contact" className="hover:text-white transition">Contact</a>
             </nav>
 
             {/* Social Icons */}
@@ -40,6 +40,13 @@ export const Footer = () => (
                         <Facebook size={20} />
                         <span className="text-gray-400">MysonGroupofCompanies</span>
                     </a>
+                    <div className="flex items-start gap-3">
+                        <LucidePhone size={20}/>
+                        <div className="flex flex-col text-gray-400 gap-1">
+                            <a href="tel:+919447458735">+91 9447458735</a>
+                            <a href="tel:+919495957914">+91 9495957914</a>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div>

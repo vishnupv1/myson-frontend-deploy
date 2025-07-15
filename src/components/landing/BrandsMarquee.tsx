@@ -12,7 +12,7 @@ const brands = [
 ];
 
 export const BrandsMarquee = () => (
-    <section className="py-8">
+    <section className="py-8" id="brands">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 overflow-hidden">
             <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">Shop from Top Brands</h2>
             <div className="relative w-full mask-fade-x">

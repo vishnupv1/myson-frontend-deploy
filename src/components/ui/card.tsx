@@ -52,7 +52,7 @@ export const Card = ({ image, children, className = "", disableImageFallback = f
 };
 
 export const CardHeader = ({ children, className = "", ...props }: React.HTMLAttributes<HTMLDivElement>) => (
-    <div className={`font-bold text-gray-900 text-lg truncate mb-1 ${className}`.trim()} {...props}>
+    <div className={`font-medium text-gray-900 text-lg truncate mb-1 ${className}`.trim()} {...props}>
         {children}
     </div>
 );

@@ -38,7 +38,19 @@ export const FeaturedProductsSection = ({ heading, icon: Icon, type }) => {
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                         {products.slice(0, 4).map((product) => (
                             <Card key={product._id} image={product.images?.[0]} onClick={() => navigate(`/products/${product._id}`)} className="cursor-pointer">
-                                <CardHeader>{product.name}</CardHeader>
+                                <CardHeader className="flex flex-col lg:flex-row lg:items-center md:justify-between gap-1 md:gap-3 mb-1 min-w-0">
+                                    <div className="min-w-0 flex-1 w-full">
+                                        <h4 className="font-medium leading-tight text-base md:text-lg">
+                                            {product.name.split(/ (.+)/)[0]}
+                                        </h4>
+                                        <h6 className="font-light text-xs md:text-sm leading-tight truncate" title={product.name.split(/ (.+)/)[1]}>
+                                            {product.name.split(/ (.+)/)[1]}
+                                        </h6>
+                                    </div>
+                                    <span className="mt-1 md:mt-0 lg:ml-auto flex-shrink-0 inline-block bg-red-50 text-slate-500 text-[10px] md:text-xs font-semibold px-2 md:px-3 py-0.5 md:py-1 rounded-full shadow-sm border border-slate-300 whitespace-nowrap text-left md:text-right w-fit">
+                                        {product.brand.name}
+                                    </span>
+                                </CardHeader>
                             </Card>
                         ))}
                     </div>

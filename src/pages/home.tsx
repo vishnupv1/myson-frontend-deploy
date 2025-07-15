@@ -6,89 +6,67 @@ import { BannerSection } from "../components/landing/BannerSection";
 import { TestimonialsSection } from "../components/landing/TestimonialsSection";
 import { Zap, Sparkles } from "lucide-react";
 import { VideoSection } from "../components/landing/videoBannerSection";
+import { useEffect, useState } from "react";
 
-// Fake product data
-const featuredProducts = [
-    {
-        id: 1,
-        name: "Premium Coffee Maker",
-        price: 129.99,
-        image: "https://picsum.photos/400/300?random=1",
-        rating: 4.5,
-        reviews: 128
-    },
-    {
-        id: 2,
-        name: "Stainless Steel Blender",
-        price: 89.99,
-        image: "https://picsum.photos/400/300?random=2",
-        rating: 4.3,
-        reviews: 95
-    },
-    {
-        id: 3,
-        name: "Smart Toaster Oven",
-        price: 149.99,
-        image: "https://picsum.photos/400/300?random=3",
-        rating: 4.7,
-        reviews: 203
-    },
-    {
-        id: 4,
-        name: "Electric Kettle",
-        price: 45.99,
-        image: "https://picsum.photos/400/300?random=4",
-        rating: 4.2,
-        reviews: 67
-    }
-];
-
-const newArrivals = [
-    {
-        id: 5,
-        name: "Air Fryer Pro",
-        price: 179.99,
-        image: "https://picsum.photos/400/300?random=5",
-        rating: 4.8,
-        reviews: 156
-    },
-    {
-        id: 6,
-        name: "Food Processor",
-        price: 199.99,
-        image: "https://picsum.photos/400/300?random=6",
-        rating: 4.4,
-        reviews: 89
-    },
-    {
-        id: 7,
-        name: "Stand Mixer",
-        price: 299.99,
-        image: "https://picsum.photos/400/300?random=7",
-        rating: 4.9,
-        reviews: 234
-    },
-    {
-        id: 8,
-        name: "Rice Cooker",
-        price: 65.99,
-        image: "https://picsum.photos/400/300?random=8",
-        rating: 4.1,
-        reviews: 45
-    }
-];
 
 export const Home = () => {
+    const [showForm, setShowForm] = useState(false);
+
+    useEffect(() => {
+        const dontShow = localStorage.getItem('dontShowFormAgain');
+        if (dontShow === 'true') return;
+        const timer = setTimeout(() => setShowForm(true), 5000);
+        return () => clearTimeout(timer);
+    }, []);
+
+    const handleClose = () => setShowForm(false);
+    const handleDontShowAgain = () => {
+        localStorage.setItem('dontShowFormAgain', 'true');
+        setShowForm(false);
+    };
+
     return (
         <main>
             <HeroSection />
-            <VideoSection/>
+            <VideoSection />
             <CategoriesSection />
             <FeaturedProductsSection heading="Best Sellers" icon={Zap} type="best-sellers" />
-            <FeaturedProductsSection heading="New Arrivals" icon={Sparkles} type="trending"/>
+            <FeaturedProductsSection heading="New Arrivals" icon={Sparkles} type="trending" />
             <BannerSection />
             <BrandsMarquee />
             <TestimonialsSection />
+
+            {/* Popup Modal for Google Form */}
+            {showForm && (
+                <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm">
+                    <div className="bg-white rounded-xl shadow-lg max-w-xl w-full p-8 relative mx-2 animate-in fade-in">
+                        <div className="flex justify-end mb-4 gap-2">
+                            <button
+                                onClick={handleDontShowAgain}
+                                className="text-xs px-3 py-1 rounded text-gray-800 bg-red-400 hover:bg-red-600 transition-colors border border-red-600"
+                            >
+                                Don't show again
+                            </button>
+                            <button
+                                onClick={handleClose}
+                                className=" text-gray-400 text-xl font-bold"
+                                aria-label="Close"
+                            >
+                                ×
+                            </button>
+                        </div>
+                        <iframe
+                            src="https://docs.google.com/forms/d/e/1FAIpQLSdsC_CyANtHjv_nfjx9aP4d0EIII1CzOvy2P6mk_7_n2310ug/viewform?embedded=true"
+                            width="100%"
+                            height="600"
+                            className="w-full rounded-xl border border-gray-300 shadow-2xl"
+                            title="Contact/Enquiry Form"
+                        >
+                            Loading…
+                        </iframe>
+                    </div>
+                </div>
+            )}
         </main>
     );
 }

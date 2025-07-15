@@ -1,42 +1,54 @@
-import "keen-slider/keen-slider.min.css"
-import { useKeenSlider } from "keen-slider/react"
-import { useEffect, useState } from "react"
-import { TestimonialCard } from "../ui/testimonialCard"
+import "keen-slider/keen-slider.min.css";
+import { useKeenSlider } from "keen-slider/react";
+import { useState } from "react";
+import { TestimonialCard } from "../ui/testimonialCard";
+import { LucideArrowLeft, LucideArrowRight } from "lucide-react";
 
 const testimonials = [
     {
-        name: "Amit Sharma",
-        text: "Myson made my kitchen upgrade so easy! Highly recommended.",
-        avatarUrl: "https://randomuser.me/api/portraits/men/32.jpg",
-        company: "Homeowner, Delhi",
+        name: "sherel Thomas",
+        text: "Its really a good place to choose your kitchen."
     },
     {
-        name: "Priya Singh",
-        text: "Great service and fast delivery. The best appliance store online!",
-        avatarUrl: "https://randomuser.me/api/portraits/women/44.jpg",
-        company: "Chef, Mumbai",
+        name: "abhilash kuriako",
+        text: "Its wonderful experience and professional deal ..."
     },
     {
-        name: "Rahul Verma",
-        text: "Excellent support and top brands. Will shop again!",
-        avatarUrl: "https://randomuser.me/api/portraits/men/65.jpg",
-        company: "Restaurateur, Bangalore",
+        name: "RAM",
+        text: "Best hotel equipment supplier dealer in kochi and thrisur."
     },
     {
-        name: "Anjali Mehta",
-        text: "A seamless experience from order to delivery. Truly impressed!",
-        avatarUrl: "https://randomuser.me/api/portraits/women/68.jpg",
-        company: "Baker, Pune",
+        name: "Indra",
+        text: "They have all kitchen utensils on reasonable price."
     },
     {
-        name: "Karan Patel",
-        text: "Reliable appliances and excellent support team. Would recommend.",
-        avatarUrl: "https://randomuser.me/api/portraits/men/72.jpg",
-        company: "Caterer, Ahmedabad",
+        name: "Abin thomas",
+        text: "Very efficient employees and the most pleasant thing was the amount of time saved in the installation process. quick and speedy."
     },
-]
+    {
+        name: "A Google user",
+        text: "Nice place..lots of kitchen equipment Very friendly sales team and staff Went for a demo today Over all very good"
+    },
+    {
+        name: "A Google user",
+        text: "Limited Display Only Available, Good Staff, Located Conveniently."
+    }
+];
 
-
+const shorts = [
+    {
+        src: "https://www.youtube.com/embed/Oykd0KRA-nE",
+        title: "Testimonial Video 1",
+    },
+    {
+        src: "https://www.youtube.com/embed/zJ4qwCebdoM",
+        title: "Testimonial Video 2",
+    },
+    {
+        src: "https://www.youtube.com/embed/030abSG98Bw",
+        title: "Testimonial Video 3",
+    },
+];
 
 export const TestimonialsSection = () => {
     const [currentSlide, setCurrentSlide] = useState(0)
@@ -68,7 +80,7 @@ export const TestimonialsSection = () => {
                         slider.next()
                     }, 1500)
                 }
-                
+
                 slider.on("created", () => {
                     slider.container.addEventListener("mouseover", () => {
                         mouseOver = true
@@ -87,13 +99,31 @@ export const TestimonialsSection = () => {
         ]
     )
 
+    // Shorts carousel for mobile only
+    const [shortsCurrent, setShortsCurrent] = useState(0);
+    const [shortsRef, shortsInstanceRef] = useKeenSlider(
+        {
+            loop: true,
+            slides: { perView: 1, spacing: 12 },
+            breakpoints: {
+                "(min-width: 768px)": {
+                    slides: { perView: shorts.length, spacing: 24 },
+                    disabled: true,
+                },
+            },
+            drag: true,
+            slideChanged(slider) {
+                setShortsCurrent(slider.track.details.rel);
+            },
+        }
+    );
 
     return (
-        <section className="py-16 bg-gradient-to-r from-gray-50 to-white">
+        <section className="py-16 bg-gradient-to-r from-gray-50 to-white" id="testimonials">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <h2 className="text-3xl font-bold text-center mb-10">What Our Customers Say</h2>
 
-                <div ref={sliderRef} className="keen-slider mb-12 py-4 mask-fade-x">
+                <div ref={sliderRef} className="keen-slider mb-12 py-4 testimonials-mask-fade-x">
                     {testimonials.map((t, i) => (
                         <div key={i} className="keen-slider__slide">
                             <TestimonialCard
@@ -115,37 +145,50 @@ export const TestimonialsSection = () => {
 
                 <h3 className="text-2xl font-bold text-center mb-6">Watch Their Stories</h3>
 
-                <div className="flex gap-6 justify-center items-center">
-                    <div className="w-[280px] h-[500px] rounded-xl overflow-hidden shadow">
-                        <iframe
-                            src="https://www.youtube.com/embed/Oykd0KRA-nE"
-                            title="Testimonial Video 1"
-                            className="w-full h-full"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerPolicy="strict-origin-when-cross-origin"
-                            allowFullScreen
-                        ></iframe>
+                {/* Shorts carousel for mobile, static row for md+ */}
+                <div className="block md:hidden">
+                    <div ref={shortsRef} className="keen-slider testimonials-shorts-carousel">
+                        {shorts.map((short, idx) => (
+                            <div key={idx} className="keen-slider__slide flex justify-center">
+                                <div className="w-[90vw] max-w-xs aspect-[9/16] max-h-[80vh] rounded-xl overflow-hidden shadow bg-black">
+                                    <iframe
+                                        src={short.src}
+                                        title={short.title}
+                                        className="w-full h-full"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        referrerPolicy="strict-origin-when-cross-origin"
+                                        allowFullScreen
+                                    ></iframe>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                    <div className="w-[280px] h-[500px] rounded-xl overflow-hidden shadow hidden sm:inline-flex">
-                        <iframe
-                            src="https://www.youtube.com/embed/zJ4qwCebdoM"
-                            title="Testimonial Video 2"
-                            className="w-full h-full"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerPolicy="strict-origin-when-cross-origin"
-                            allowFullScreen
-                        ></iframe>
+                    <div className="flex justify-between py-4 px-10 mb-12">
+                        <button
+                            onClick={() => shortsInstanceRef.current?.prev()}
+                        >
+                            <LucideArrowLeft size={18} strokeWidth="1.5" stroke="grey"/>
+                        </button>
+                        <button
+                            onClick={() => shortsInstanceRef.current?.next()}
+                        >
+                            <LucideArrowRight size={18} strokeWidth="1.5" stroke="grey"/>
+                        </button>
                     </div>
-                    <div className="w-[280px] h-[500px] rounded-xl overflow-hidden shadow hidden md:inline-flex">
-                        <iframe
-                            src="https://www.youtube.com/embed/030abSG98Bw"
-                            title="Testimonial Video 3"
-                            className="w-full h-full"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerPolicy="strict-origin-when-cross-origin"
-                            allowFullScreen
-                        ></iframe>
-                    </div>
+                </div>
+                <div className="hidden md:flex gap-6 justify-center items-center">
+                    {shorts.map((short, idx) => (
+                        <div key={idx} className="w-[280px] h-[500px] rounded-xl overflow-hidden shadow bg-black">
+                            <iframe
+                                src={short.src}
+                                title={short.title}
+                                className="w-full h-full"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerPolicy="strict-origin-when-cross-origin"
+                                allowFullScreen
+                            ></iframe>
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>

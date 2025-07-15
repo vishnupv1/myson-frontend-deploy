@@ -1,10 +1,53 @@
-import { useState } from 'react';
-import { SearchIcon, Menu, X } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { SearchIcon, Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { SearchPalette } from '../searchPallete';
+import { publicAPI } from '../../services/api';
+
+interface Category {
+    _id: string;
+    name: string;
+}
 
 export const Navbar = () => {
     const [mobileOpen, setMobileOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
+    const [categories, setCategories] = useState<Category[]>([]);
+    const [catLoading, setCatLoading] = useState(false);
+    const [catError, setCatError] = useState('');
+    const [showCatDropdown, setShowCatDropdown] = useState(false);
+    const [mobileCatOpen, setMobileCatOpen] = useState(false);
+    const catDropdownRef = useRef<HTMLDivElement>(null);
+    let hideTimeout: ReturnType<typeof setTimeout>;
+
+    useEffect(() => {
+        // Preload categories on mount for instant dropdown
+        fetchCategories();
+    }, []);
+
+    const fetchCategories = async () => {
+        setCatLoading(true);
+        setCatError('');
+        try {
+            const res = await publicAPI.getCategories();
+            setCategories(res.data || []);
+        } catch {
+            setCatError('Failed to load categories');
+        } finally {
+            setCatLoading(false);
+        }
+    };
+
+    // Close dropdown on outside click (desktop)
+    useEffect(() => {
+        if (!showCatDropdown) return;
+        const handleClick = (e: MouseEvent) => {
+            if (catDropdownRef.current && !catDropdownRef.current.contains(e.target as Node)) {
+                setShowCatDropdown(false);
+            }
+        };
+        document.addEventListener('mousedown', handleClick);
+        return () => document.removeEventListener('mousedown', handleClick);
+    }, [showCatDropdown]);
 
     const handleOpen = () => {
         setMobileOpen(true);
@@ -31,11 +74,57 @@ export const Navbar = () => {
                 </a>
 
                 {/* Desktop Nav */}
-                <nav className="hidden md:flex items-center space-x-6 text-gray-800">
+                <nav className="hidden md:flex items-center space-x-6 text-gray-800 relative">
                     <a href="/" className="hover:text-red-500 flex items-center gap-1">
                         <span className="">Home</span>
                     </a>
-                    <a href="/products" className="hover:text-red-500">Products</a>
+                    {/* Products with hover dropdown */}
+                    <div
+                        className="relative"
+                        onMouseEnter={() => {
+                            setShowCatDropdown(true)
+                        }}
+                        onMouseLeave={() => {
+                            hideTimeout = setTimeout(() => setShowCatDropdown(false), 600)
+                        }}
+                    >
+                        <a href="/products" className="hover:text-red-500 flex items-center gap-1 cursor-pointer select-none">
+                            Products <ChevronDown className="w-4 h-4" />
+                        </a>
+                        {showCatDropdown && (
+                            <div
+                                ref={catDropdownRef}
+                                className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50 animate-in fade-in duration-300`}
+                                onMouseEnter={() => {
+                                    clearTimeout(hideTimeout)
+                                    setShowCatDropdown(true)
+                                }}
+                                onMouseLeave={() => {
+                                    hideTimeout = setTimeout(() => setShowCatDropdown(false), 600)
+                                }}
+                            >
+                                <div className="p-2">
+                                    {catLoading ? (
+                                        <div className="px-4 py-2 text-gray-500 text-sm">Loading...</div>
+                                    ) : catError ? (
+                                        <div className="px-4 py-2 text-red-500 text-sm">{catError}</div>
+                                    ) : categories.length === 0 ? (
+                                        <div className="px-4 py-2 text-gray-500 text-sm">No categories</div>
+                                    ) : (
+                                        categories.map(cat => (
+                                            <a
+                                                key={cat._id}
+                                                href={`/products?category=${cat._id}`}
+                                                className="block px-4 py-2 hover:bg-red-50 hover:text-red-600 text-gray-800 text-sm transition rounded"
+                                            >
+                                                {cat.name}
+                                            </a>
+                                        ))
+                                    )}
+                                </div>
+                            </div>
+                        )}
+                    </div>
                     <a href="/about" className="hover:text-red-500 ">About</a>
                 </nav>
 
@@ -78,7 +167,40 @@ export const Navbar = () => {
                         </button>
                         <nav className="flex flex-col gap-6 mt-16 px-6 text-gray-800">
                             <a href="/" className=" text-lg" onClick={handleClose}>Home</a>
-                            <a href="/products" className="hover:text-red-500 text-lg" onClick={handleClose}>Products</a>
+                            {/* Products with collapsible categories */}
+                            <div>
+                                <button
+                                    className="flex items-center gap-2 w-full text-left text-lg hover:text-red-500 focus:outline-none"
+                                    onClick={() => setMobileCatOpen(v => !v)}
+                                    aria-expanded={mobileCatOpen}
+                                    aria-controls="mobile-cat-list"
+                                >
+                                    Products
+                                    {mobileCatOpen ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
+                                </button>
+                                {mobileCatOpen && (
+                                    <div id="mobile-cat-list" className="ml-2 mt-2 border-l-4 border-red-500 pl-3 flex flex-col gap-1 animate-in fade-in">
+                                        {catLoading ? (
+                                            <div className="py-1 text-gray-500 text-sm">Loading...</div>
+                                        ) : catError ? (
+                                            <div className="py-1 text-red-500 text-sm">{catError}</div>
+                                        ) : categories.length === 0 ? (
+                                            <div className="py-1 text-gray-500 text-sm">No categories</div>
+                                        ) : (
+                                            categories.map(cat => (
+                                                <a
+                                                    key={cat._id}
+                                                    href={`/products?category=${cat._id}`}
+                                                    className="block py-1 text-gray-800 hover:text-red-600 text-base transition"
+                                                    onClick={handleClose}
+                                                >
+                                                    {cat.name}
+                                                </a>
+                                            ))
+                                        )}
+                                    </div>
+                                )}
+                            </div>
                             <a href="/about" className="hover:text-red-500 text-lg" onClick={handleClose}>About</a>
                         </nav>
                     </div>

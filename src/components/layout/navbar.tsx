@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { SearchIcon, Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
+import { SearchIcon, Menu, X, ChevronDown, ChevronUp, LucidePhone, LucideMapPin } from 'lucide-react';
 import { SearchPalette } from '../searchPallete';
 import { publicAPI } from '../../services/api';
 import { useNavigate } from 'react-router';
@@ -17,7 +17,7 @@ export const Navbar = () => {
     const [catLoading, setCatLoading] = useState(false);
     const [catError, setCatError] = useState('');
     const [showCatDropdown, setShowCatDropdown] = useState(false);
-    const [mobileCatOpen, setMobileCatOpen] = useState(false);
+    const [mobileCatOpen, setMobileCatOpen] = useState(true);
     const catDropdownRef = useRef<HTMLDivElement>(null);
     const hideTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
@@ -200,7 +200,7 @@ export const Navbar = () => {
                                         ) : categories.length === 0 ? (
                                             <div className="py-1 text-gray-500 text-sm">No categories</div>
                                         ) : (
-                                            categories.map(cat => (
+                                            categories.slice(0, 6).map(cat => (
                                                 <a
                                                     key={cat._id}
                                                     href={`/products?category=${cat._id}`}
@@ -215,7 +215,21 @@ export const Navbar = () => {
                                 )}
                             </div>
                             <a href="/about" className="hover:text-red-500 text-lg" onClick={handleClose}>About</a>
+                            <div className="grow"></div>
                         </nav>
+                            
+                        {/* Address and contact info pinned to the very bottom of the mobile menu */}
+                        <div className="w-full px-6 pb-6 pt-2 text-[15px] space-y-3 text-gray-800 border-t border-gray-200">
+                            <div className="font-semibold flex gap-1 items-center"><LucideMapPin size={16} />Myson Planet</div>
+                            <div className="text-sm leading-snug ms-4">Cheranallur, Ernakulam,<br />Kerala 682034</div>
+                            <div className="flex items-start gap-1">
+                                <LucidePhone size={16} />
+                                <div className="flex flex-col text-gray-400 gap-1">
+                                    <a href="tel:+919447458735">+91 9447458735</a>
+                                    <a href="tel:+919495957914">+91 9495957914</a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )}

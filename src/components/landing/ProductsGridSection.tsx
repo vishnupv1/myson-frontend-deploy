@@ -34,7 +34,7 @@ export const ProductsGridSection = () => {
         category: "",
         brand: "",
         page: 1,
-        limit: 9,
+        limit: 10,
     });
     const [totalPages, setTotalPages] = useState(1);
 

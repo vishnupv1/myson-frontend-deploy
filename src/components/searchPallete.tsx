@@ -2,8 +2,10 @@ import { useState, useEffect, useRef } from 'react';
 import { SearchIcon, XIcon } from 'lucide-react';
 import { publicAPI } from '../services/api';
 import { buildImageUrl } from '../util/buildImageUrl';
+import { useNavigate } from 'react-router';
 
 export const SearchPalette = () => {
+    const navigate = useNavigate()
     const [open, setOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [query, setQuery] = useState('');
@@ -100,13 +102,17 @@ export const SearchPalette = () => {
                             />
                         </div>
 
-                        <div className="mt-4 space-y-2 min-h-[40px]">
+                        <div className="mt-4 space-y-2 min-h-[40px] overflow-y-auto max-h-[80vh]">
                             {loading && <div className="text-gray-400 text-sm">Searching...</div>}
                             {!loading && results.length === 0 && query.trim() && (
                                 <div className="text-gray-400 text-sm">No products found.</div>
                             )}
                             {!loading && results.map(product => (
-                                <div key={product._id} className="flex items-center w-full gap-3 p-2 rounded-xl hover:bg-gray-100 cursor-pointer justify-start">
+                                <div
+                                    key={product._id}
+                                    className="flex items-center w-full gap-3 p-2 rounded-xl hover:bg-gray-100 cursor-pointer justify-start"
+                                    onClick={()=>{closePalette();navigate(`/products/${product._id}`)}}
+                                >
                                     <img src={buildImageUrl(product.images?.[0])} alt={product.name} className="h-8 sm:h-14 rounded-md object-cover" />
                                     <span className="text-gray-800 font-semibold">{product.name}</span>
                                     <p className="rounded-full px-2 text-sm border border-gray-200 text-gray-800 bg-gray-200 ml-auto">{product.brand.name}</p>

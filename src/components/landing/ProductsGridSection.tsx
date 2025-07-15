@@ -7,6 +7,7 @@ interface Product {
     _id: string;
     name: string;
     images: string[];
+    brand: any
 }
 interface Category {
     _id: string;
@@ -24,7 +25,12 @@ interface Filters {
     limit: number;
 }
 
-export const ProductsGridSection = () => {
+interface ProductsGridSectionProps {
+    filtersFromUrl?: Filters;
+    onFiltersChange?: (filters: Filters) => void;
+}
+
+export const ProductsGridSection = ({ filtersFromUrl, onFiltersChange }: ProductsGridSectionProps) => {
     const [products, setProducts] = useState<Product[]>([]);
     const [categories, setCategories] = useState<Category[]>([]);
     const [brands, setBrands] = useState<Brand[]>([]);
@@ -38,6 +44,17 @@ export const ProductsGridSection = () => {
     });
     const [totalPages, setTotalPages] = useState(1);
 
+    // Sync filters with URL on mount and when filtersFromUrl changes
+    useEffect(() => {
+        if (filtersFromUrl) {
+            setFilters({
+                ...filters,
+                ...filtersFromUrl,
+            });
+        }
+        // eslint-disable-next-line
+    }, [JSON.stringify(filtersFromUrl)]);
+
     useEffect(() => {
         fetchCategories();
         fetchBrands();
@@ -45,6 +62,14 @@ export const ProductsGridSection = () => {
 
     useEffect(() => {
         fetchProducts();
+        // eslint-disable-next-line
+    }, [filters]);
+
+    // When filters change, update the URL
+    useEffect(() => {
+        if (onFiltersChange) {
+            onFiltersChange(filters);
+        }
         // eslint-disable-next-line
     }, [filters]);
 
@@ -132,15 +157,15 @@ export const ProductsGridSection = () => {
                 </select>
             </div>
             {/* Product Grid */}
-            <main className="flex-1">
+            <main className="flex-1 min-h-[400px] flex items-center justify-center">
                 {isLoading ? (
-                    <div className="flex items-center justify-center h-64">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-red-600"></div>
+                    <div className="flex items-center justify-center w-full min-h-[400px]">
+                        <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-red-600"></div>
                     </div>
                 ) : products.length === 0 ? (
-                    <div className="text-center py-12 text-gray-500">No products found.</div>
+                    <div className="text-center py-12 text-gray-500 w-full">No products found.</div>
                 ) : (
-                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6 w-full">
                         {products.map((product) => (
                             <Card
                                 key={product._id}
@@ -148,7 +173,19 @@ export const ProductsGridSection = () => {
                                 className="cursor-pointer"
                                 onClick={() => window.location.href = `/products/${product._id}`}
                             >
-                                <CardHeader>{product.name}</CardHeader>
+                                <CardHeader className="flex flex-col lg:flex-row lg:items-center md:justify-between gap-1 md:gap-3 mb-1 min-w-0">
+                                    <div className="min-w-0 flex-1 w-full">
+                                        <h4 className="font-medium leading-tight text-base md:text-lg">
+                                            {product.name.split(/ (.+)/)[0]}
+                                        </h4>
+                                        <h6 className="font-light text-xs md:text-sm leading-tight truncate" title={product.name.split(/ (.+)/)[1]}>
+                                            {product.name.split(/ (.+)/)[1]}
+                                        </h6>
+                                    </div>
+                                    <span className="mt-1 md:mt-0 lg:ml-auto flex-shrink-0 inline-block bg-red-50 text-slate-500 text-[10px] md:text-xs font-semibold px-2 md:px-3 py-0.5 md:py-1 rounded-full shadow-sm border border-slate-300 whitespace-nowrap text-left md:text-right w-fit">
+                                        {product.brand.name}
+                                    </span>
+                                </CardHeader>
                             </Card>
                         ))}
                     </div>

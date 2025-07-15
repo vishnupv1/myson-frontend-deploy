@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { SearchIcon, Menu, X, ChevronDown, ChevronUp } from 'lucide-react';
 import { SearchPalette } from '../searchPallete';
 import { publicAPI } from '../../services/api';
+import { useNavigate } from 'react-router';
 
 interface Category {
     _id: string;
@@ -9,6 +10,7 @@ interface Category {
 }
 
 export const Navbar = () => {
+    const navigate = useNavigate()
     const [mobileOpen, setMobileOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [categories, setCategories] = useState<Category[]>([]);
@@ -17,7 +19,7 @@ export const Navbar = () => {
     const [showCatDropdown, setShowCatDropdown] = useState(false);
     const [mobileCatOpen, setMobileCatOpen] = useState(false);
     const catDropdownRef = useRef<HTMLDivElement>(null);
-    let hideTimeout: ReturnType<typeof setTimeout>;
+    const hideTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
 
     useEffect(() => {
         // Preload categories on mount for instant dropdown
@@ -75,20 +77,24 @@ export const Navbar = () => {
 
                 {/* Desktop Nav */}
                 <nav className="hidden md:flex items-center space-x-6 text-gray-800 relative">
-                    <a href="/" className="hover:text-red-500 flex items-center gap-1">
+                    <a
+                        onClick={() => navigate("/")}
+                        className="hover:text-red-500 flex items-center gap-1 cursor-pointer">
                         <span className="">Home</span>
                     </a>
                     {/* Products with hover dropdown */}
                     <div
                         className="relative"
                         onMouseEnter={() => {
+                            if (hideTimeout.current) clearTimeout(hideTimeout.current);
                             setShowCatDropdown(true)
                         }}
                         onMouseLeave={() => {
-                            hideTimeout = setTimeout(() => setShowCatDropdown(false), 600)
+                            if (hideTimeout.current) clearTimeout(hideTimeout.current);
+                            hideTimeout.current = setTimeout(() => setShowCatDropdown(false), 600)
                         }}
                     >
-                        <a href="/products" className="hover:text-red-500 flex items-center gap-1 cursor-pointer select-none">
+                        <a onClick={() => navigate("/products")} className="hover:text-red-500 flex items-center gap-1 cursor-pointer select-none">
                             Products <ChevronDown className="w-4 h-4" />
                         </a>
                         {showCatDropdown && (
@@ -96,11 +102,12 @@ export const Navbar = () => {
                                 ref={catDropdownRef}
                                 className={`absolute left-1/2 -translate-x-1/2 top-full mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50 animate-in fade-in duration-300`}
                                 onMouseEnter={() => {
-                                    clearTimeout(hideTimeout)
+                                    if (hideTimeout.current) clearTimeout(hideTimeout.current);
                                     setShowCatDropdown(true)
                                 }}
                                 onMouseLeave={() => {
-                                    hideTimeout = setTimeout(() => setShowCatDropdown(false), 600)
+                                    if (hideTimeout.current) clearTimeout(hideTimeout.current);
+                                    hideTimeout.current = setTimeout(() => setShowCatDropdown(false), 600)
                                 }}
                             >
                                 <div className="p-2">
@@ -114,8 +121,10 @@ export const Navbar = () => {
                                         categories.map(cat => (
                                             <a
                                                 key={cat._id}
-                                                href={`/products?category=${cat._id}`}
-                                                className="block px-4 py-2 hover:bg-red-50 hover:text-red-600 text-gray-800 text-sm transition rounded"
+                                                onClick={() => {
+                                                    navigate(`/products?category=${cat._id}`)
+                                                }}
+                                                className="block cursor-pointer px-4 py-2 hover:bg-red-50 hover:text-red-600 text-gray-800 text-sm transition rounded"
                                             >
                                                 {cat.name}
                                             </a>
@@ -125,7 +134,11 @@ export const Navbar = () => {
                             </div>
                         )}
                     </div>
-                    <a href="/about" className="hover:text-red-500 ">About</a>
+                    <a
+                        onClick={() => navigate("/about")}
+                        className="hover:text-red-500 flex items-center gap-1 cursor-pointer">
+                        <span className="">About</span>
+                    </a>
                 </nav>
 
                 {/* Desktop Search */}

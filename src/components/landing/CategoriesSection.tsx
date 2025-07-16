@@ -1,31 +1,38 @@
 import "keen-slider/keen-slider.min.css"
 import { useKeenSlider } from "keen-slider/react"
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router"
 
 const categories = [
     {
         title: 'Offer Zone',
         imageUrl: 'https://dms.mydukaan.io/original/webp/media/c74f22ef-eaa2-404b-832c-7d43fc0c8d86.gif',
+        brandId: null,
     },
     {
         title: 'Western',
         imageUrl: 'https://lighthousefnb.com/wp-content/uploads/2024/08/WBM-1080-T.png',
+        brandId: '6875e4fa935282540f89f056',
     },
     {
         title: 'Hoshizaki',
         imageUrl: 'https://www.hoshizaki-sea.com/wp-content/uploads/2024/11/4.-HW-320B-1.png',
+        brandId: '6875e3e7935282540f89f007',
     },
     {
         title: 'Dihr',
         imageUrl: 'https://www.scotsice.com.au/_images/_dihr/RX101E.jpg',
+        brandId: '6877b5f926411edca3952a65',
     },
     {
-        title: 'Merrychef',
-        imageUrl: 'https://www.pi-india.com/uploaded_files/ca424938a90417.png',
+        title: 'MerryChef',
+        imageUrl: '/merrychef.prod.png', // Local image in /public
+        brandId: '6877b9c526411edca3952c03',
     },
     {
-        title: 'Classeq',
-        imageUrl: 'https://5.imimg.com/data5/IJ/IH/WD/SELLER-3836337/classeq-undercounter-dishwasher-for-pubs-1000x1000.jpg',
+        title: 'Hatco',
+        imageUrl: '/hatco.prod.png',
+        brandId: '6877c1f026411edca3952f24',
     },
 ]
 
@@ -47,6 +54,16 @@ export const CategoriesSection = () => {
         },
     })
 
+    const navigate = useNavigate();
+
+    const handleCategoryClick = (brandId: string | null) => {
+        if (brandId) {
+            navigate(`/products?brand=${brandId}`);
+        } else {
+            navigate('/products');
+        }
+    };
+
     return (
         <section className="py-16 bg-gradient-to-r from-gray-50 to-white border-y border-gray-100"  id="categories">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -54,10 +71,11 @@ export const CategoriesSection = () => {
                     Shop by Category
                 </h2>
                 <div ref={sliderRef} className="keen-slider md:grid md:grid-cols-6 md:gap-8">
-                    {categories.map(({ title, imageUrl }, i) => (
+                    {categories.map(({ title, imageUrl, brandId }, i) => (
                         <div
                             key={title}
                             className="keen-slider__slide md:flex md:flex-col md:items-center group cursor-pointer"
+                            onClick={() => handleCategoryClick(brandId)}
                         >
                             <img
                                 src={imageUrl}

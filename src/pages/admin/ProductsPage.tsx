@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router';
+import { Link, useSearchParams, useNavigate } from 'react-router';
 import { 
     Plus, 
     Search, 
@@ -56,6 +56,33 @@ const ProductsPage = () => {
         limit: 10,
     });
     const [totalPages, setTotalPages] = useState(1);
+    const [searchParams, setSearchParams] = useSearchParams();
+    const navigate = useNavigate();
+
+    // Sync state from URL on mount
+    useEffect(() => {
+        const urlFilters: any = {};
+        for (const [key, value] of searchParams.entries()) {
+            if (['page', 'limit'].includes(key)) {
+                urlFilters[key] = Number(value);
+            } else {
+                urlFilters[key] = value;
+            }
+        }
+        setFilters(prev => ({ ...prev, ...urlFilters }));
+        // eslint-disable-next-line
+    }, []);
+
+    // Sync URL when filters change
+    useEffect(() => {
+        const params: any = {};
+        Object.entries(filters).forEach(([key, value]) => {
+            if (value !== '' && value !== undefined && value !== null) {
+                params[key] = value;
+            }
+        });
+        setSearchParams(params, { replace: true });
+    }, [filters, setSearchParams]);
 
     useEffect(() => {
         fetchCategories();

@@ -8,6 +8,7 @@ interface Product {
     name: string;
     images: string[];
     brand: any
+    category: any
 }
 interface Category {
     _id: string;
@@ -179,7 +180,7 @@ export const ProductsGridSection = ({ filtersFromUrl, onFiltersChange }: Product
                                             {product.name.split(/ (.+)/)[0]}
                                         </h4>
                                         <h6 className="font-light text-xs md:text-sm leading-tight truncate" title={product.name.split(/ (.+)/)[1]}>
-                                            {product.name.split(/ (.+)/)[1]}
+                                            {product.name.split(/ (.+)/)[1] || product.category.name }
                                         </h6>
                                     </div>
                                     <span className="mt-1 md:mt-0 lg:ml-auto flex-shrink-0 inline-block bg-red-50 text-slate-500 text-[10px] md:text-xs font-semibold px-2 md:px-3 py-0.5 md:py-1 rounded-full shadow-sm border border-slate-300 whitespace-nowrap text-left md:text-right w-fit">

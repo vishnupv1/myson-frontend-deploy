@@ -327,7 +327,7 @@ const ProductsPage = () => {
                         </div>
                     </div>
                 ) : (
-                    <div className="overflow-hidden">
+                    <div className="overflow-x-auto">
                         <table className="min-w-full divide-y divide-gray-200">
                             <thead className="bg-gray-50">
                                 <tr>

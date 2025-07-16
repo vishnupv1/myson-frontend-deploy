@@ -82,6 +82,11 @@ export const Navbar = () => {
                         className="hover:text-red-500 flex items-center gap-1 cursor-pointer">
                         <span className="">Home</span>
                     </a>
+                    <a
+                        onClick={() => navigate("/about")}
+                        className="hover:text-red-500 flex items-center gap-1 cursor-pointer">
+                        <span className="">About</span>
+                    </a>
                     {/* Products with hover dropdown */}
                     <div
                         className="relative"
@@ -134,11 +139,6 @@ export const Navbar = () => {
                             </div>
                         )}
                     </div>
-                    <a
-                        onClick={() => navigate("/about")}
-                        className="hover:text-red-500 flex items-center gap-1 cursor-pointer">
-                        <span className="">About</span>
-                    </a>
                 </nav>
 
                 {/* Desktop Search */}
@@ -180,6 +180,7 @@ export const Navbar = () => {
                         </button>
                         <nav className="flex flex-col gap-6 mt-16 px-6 text-gray-800">
                             <a href="/" className=" text-lg" onClick={handleClose}>Home</a>
+                            <a href="/about" className="hover:text-red-500 text-lg" onClick={handleClose}>About</a>
                             {/* Products with collapsible categories */}
                             <div>
                                 <button
@@ -214,7 +215,6 @@ export const Navbar = () => {
                                     </div>
                                 )}
                             </div>
-                            <a href="/about" className="hover:text-red-500 text-lg" onClick={handleClose}>About</a>
                             <div className="grow"></div>
                         </nav>
                             

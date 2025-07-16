@@ -4,7 +4,7 @@ import { useSearchParams, useNavigate } from 'react-router';
 
 export const Products: React.FC = () => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const navigate = useNavigate();
+    console.log(searchParams)
 
     // Read filters from URL
     const filters = {

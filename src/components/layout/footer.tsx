@@ -1,14 +1,14 @@
 import { Facebook, Youtube, Instagram, LucideArrowUpRight, LucidePhone } from "lucide-react";
 
 export const Footer = () => (
-    <footer className="bg-neutral-900 text-gray-200 pt-10 pb-5` ">
+    <footer className="bg-neutral-900 text-gray-200 pb-4 pt-16">
         <div className="mx-auto max-w-6xl px-6 flex flex-col md:flex-row justify-between gap-8">
             {/* Logo and About */}
-            <div className="flex-1 max-w-md text-center md:text-left">
+            <div className="flex-1 self-center md:self-start max-w-md text-center md:text-left">
                 <img
-                    src="/brand.icon.png"
+                    src="/brand.logo.png"
                     alt="Company Logo"
-                    className="mb-4 w-16 mx-auto md:mx-0 rounded"
+                    className="mb-4 h-16 mx-auto md:mx-0 rounded"
                 />
                 <p className="text-sm text-gray-400">
                     Since our establishment in 2018, MYSON has swiftly risen as India's leading hub for pet parents. With a wide array of furniture and kitchenwares, we fulfill all your kitchen requirements with unparalleled quality and attention. With a presence in 2 physical retail outlets spanning Kerala, we're continually expanding our reach to serve you better.
@@ -41,7 +41,7 @@ export const Footer = () => (
                         <span className="text-gray-400">MysonGroupofCompanies</span>
                     </a>
                     <div className="flex items-start gap-3">
-                        <LucidePhone size={20}/>
+                        <LucidePhone size={20} />
                         <div className="flex flex-col text-gray-400 gap-1">
                             <a href="tel:+919447458735">+91 9447458735</a>
                             <a href="tel:+919495957914">+91 9495957914</a>
@@ -49,12 +49,12 @@ export const Footer = () => (
                     </div>
                 </div>
             </div>
-            <div>
+            <div className="flex flex-col lg:min-w-64">
                 {/* heading */}
                 <h4 className="mb-2 text-white text-lg">Store Locator</h4>
 
                 {/* responsive map wrapper */}
-                <div className="relative w-full overflow-hidden rounded-md shadow-lg"
+                <div className="relative w-full flex-1 overflow-hidden rounded-md shadow-lg"
                     /* 16 : 9 aspect ratio – adjust if you want it taller/narrower */
                     style={{ paddingBottom: "56.25%" }}>
                     <iframe
@@ -82,7 +82,8 @@ export const Footer = () => (
                 </div>
             </div>
         </div>
-        <div className="text-center text-sm text-gray-500 mt-8">
+        <div className="text-center text-sm text-gray-500 mt-8 max-w-max mx-auto">
+            <hr className="my-3 border-t-gray-700"/>
             &copy; {new Date().getFullYear()} Myson. All rights reserved.
         </div>
     </footer>

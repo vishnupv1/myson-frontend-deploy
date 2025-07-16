@@ -9,7 +9,7 @@ export const SearchPalette = () => {
     const [open, setOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
     const [query, setQuery] = useState('');
-    const [results, setResults] = useState<any[]>([]);
+    const [results, setResults] = useState<any>(null);
     const [loading, setLoading] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
     let debounceTimeout: ReturnType<typeof setTimeout> | null = null;
@@ -24,7 +24,7 @@ export const SearchPalette = () => {
         setTimeout(() => {
             setOpen(false);
             setQuery('');
-            setResults([]);
+            setResults(null);
             setIsClosing(false);
         }, 300); // match with duration class
     };
@@ -42,8 +42,8 @@ export const SearchPalette = () => {
     }, []);
 
     useEffect(() => {
-        if (!query.trim()) {
-            setResults([]);
+        if (!query.trim() || query.trim().length < 2) {
+            setResults(null);
             return;
         }
         setLoading(true);
@@ -53,7 +53,7 @@ export const SearchPalette = () => {
                 const res = await publicAPI.searchProducts(query.trim());
                 setResults(res.data);
             } catch {
-                setResults([]);
+                setResults(null);
             } finally {
                 setLoading(false);
             }
@@ -62,6 +62,14 @@ export const SearchPalette = () => {
             if (debounceTimeout) clearTimeout(debounceTimeout);
         };
     }, [query]);
+
+    // Helper to build filter URL
+    const buildFilterUrl = (brandId?: string, categoryId?: string) => {
+        let url = '/products?';
+        if (brandId) url += `brand=${brandId}&`;
+        if (categoryId) url += `category=${categoryId}&`;
+        return url.replace(/&$/, '');
+    };
 
     return (
         <>
@@ -101,26 +109,77 @@ export const SearchPalette = () => {
                                 onChange={e => setQuery(e.target.value)}
                             />
                         </div>
+                        {/* Search Guide */}
+                        <div className="text-[11px] md:text-xs text-gray-500 mt-2 mb-1 px-1">
+                            <span>Tip: </span>
+                            <span>Type a brand (e.g. <b>Western</b>) or a category (<b>Dishwasher</b>), or both (<b>Western Dishwasher</b>) to find products. Click "View all products" to see filtered results.</span>
+                        </div>
 
                         <div className="mt-4 space-y-2 min-h-[40px] overflow-y-auto max-h-[80vh]">
                             {loading && <div className="text-gray-400 text-sm">Searching...</div>}
-                            {!loading && results.length === 0 && query.trim() && (
-                                <div className="text-gray-400 text-sm">No products found.</div>
+                            {!loading && results && (
+                                <>
+                                    {/* Combined Brand+Category Result */}
+                                    {results.brand && results.category && (
+                                        <div className="flex items-center gap-2 p-2 rounded-xl bg-gray-50 mb-1">
+                                            <span className="font-semibold text-gray-800">{results.category.name} <span className='font-light'>in</span> {results.brand.name}</span>
+                                            <button
+                                                className="ml-auto px-3 py-1 text-xs rounded bg-red-500 text-white hover:bg-red-600"
+                                                onClick={() => { closePalette(); navigate(buildFilterUrl(results.brand._id, results.category._id)); }}
+                                            >
+                                                View all products
+                                            </button>
+                                        </div>
+                                    )}
+                                    {/* Brand Only Result */}
+                                    {results.brand && !results.category && (
+                                        <div className="flex items-center gap-2 p-2 rounded-xl bg-gray-50 mb-1">
+                                            <span className="font-semibold text-gray-800">{results.brand.name}</span>
+                                            <button
+                                                className="ml-auto px-3 py-1 text-xs rounded bg-red-500 text-white hover:bg-red-600"
+                                                onClick={() => { closePalette(); navigate(buildFilterUrl(results.brand._id, undefined)); }}
+                                            >
+                                                View all products
+                                            </button>
+                                        </div>
+                                    )}
+                                    {/* Category Only Result */}
+                                    {results.category && !results.brand && (
+                                        <div className="flex items-center gap-2 p-2 rounded-xl bg-gray-50 mb-1">
+                                            <span className="font-semibold text-gray-800">{results.category.name}</span>
+                                            <button
+                                                className="ml-auto px-3 py-1 text-xs rounded bg-red-500 text-white hover:bg-red-600"
+                                                onClick={() => { closePalette(); navigate(buildFilterUrl(undefined, results.category._id)); }}
+                                            >
+                                                View all products
+                                            </button>
+                                        </div>
+                                    )}
+                                    <hr className='text-gray-300'/>
+                                    {/* Product Results */}
+                                    {Array.isArray(results.products) && results.products.length > 0 && results.products.map(product => (
+                                        <div
+                                            key={product._id}
+                                            className="flex items-center w-full gap-3 p-2 rounded-xl hover:bg-gray-100 cursor-pointer justify-start"
+                                            onClick={() => { closePalette(); navigate(`/products/${product._id}`) }}
+                                        >
+                                            <img src={buildImageUrl(product.images?.[0])} alt={product.name} className="h-8 sm:h-14 rounded-md object-cover" />
+                                            <span className="text-gray-800 font-semibold">{product.name}</span>
+                                            <p className="rounded-full px-2 text-sm border border-gray-200 text-gray-800 bg-gray-200 ml-auto">{product.brand?.name}</p>
+                                        </div>
+                                    ))}
+                                    {/* No products found */}
+                                    {Array.isArray(results.products) && results.products.length === 0 && (
+                                        <div className="text-gray-400 text-sm">No products found.</div>
+                                    )}
+                                </>
                             )}
-                            {!loading && results.map(product => (
-                                <div
-                                    key={product._id}
-                                    className="flex items-center w-full gap-3 p-2 rounded-xl hover:bg-gray-100 cursor-pointer justify-start"
-                                    onClick={()=>{closePalette();navigate(`/products/${product._id}`)}}
-                                >
-                                    <img src={buildImageUrl(product.images?.[0])} alt={product.name} className="h-8 sm:h-14 rounded-md object-cover" />
-                                    <span className="text-gray-800 font-semibold">{product.name}</span>
-                                    <p className="rounded-full px-2 text-sm border border-gray-200 text-gray-800 bg-gray-200 ml-auto">{product.brand.name}</p>
-                                </div >
-                            ))}
-                        </div >
-                    </div >
-                </div >
+                            {!loading && !results && query.trim() && (
+                                <div className="text-gray-400 text-sm">No results found.</div>
+                            )}
+                        </div>
+                    </div>
+                </div>
             )}
         </>
     );

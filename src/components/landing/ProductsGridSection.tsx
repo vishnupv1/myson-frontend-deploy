@@ -35,7 +35,7 @@ export const ProductsGridSection = ({ filtersFromUrl, onFiltersChange }: Product
     const [categories, setCategories] = useState<Category[]>([]);
     const [brands, setBrands] = useState<Brand[]>([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [filters, setFilters] = useState<Filters>({
+    const [filters, setFilters] = useState<Filters>(filtersFromUrl || {
         search: "",
         category: "",
         brand: "",
@@ -62,7 +62,6 @@ export const ProductsGridSection = ({ filtersFromUrl, onFiltersChange }: Product
 
     useEffect(() => {
         fetchProducts();
-        // eslint-disable-next-line
     }, [filters]);
 
     // When filters change, update the URL
@@ -70,7 +69,6 @@ export const ProductsGridSection = ({ filtersFromUrl, onFiltersChange }: Product
         if (onFiltersChange) {
             onFiltersChange(filters);
         }
-        // eslint-disable-next-line
     }, [filters]);
 
     const fetchProducts = async () => {
@@ -83,7 +81,9 @@ export const ProductsGridSection = ({ filtersFromUrl, onFiltersChange }: Product
             if (filters.category) params.category = filters.category;
             if (filters.brand) params.brand = filters.brand;
             if (filters.search) params.search = filters.search;
+            
             const res = await publicAPI.getProducts(params);
+            console.log(res.data.total)
             setProducts(res.data.products || []);
             setTotalPages(Math.ceil((res.data.total || 0) / filters.limit));
         } catch {

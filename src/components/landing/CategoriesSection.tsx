@@ -26,7 +26,7 @@ const categories = [
     },
     {
         title: 'MerryChef',
-        imageUrl: '/merrychef.prod.png', // Local image in /public
+        imageUrl: '/merrychef.prod.png',
         brandId: '6877b9c526411edca3952c03',
     },
     {
